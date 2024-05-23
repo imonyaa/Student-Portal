@@ -1,0 +1,27 @@
+.sidebar {
+  width: 3rem;
+  background-color: #dedffe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-inline: 0.7rem;
+  height: calc(100vh - 8rem);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  gap: 1rem;
+  transition: width 0.2s;
+}
+
+.sidebar-spacer {
+  width: 3rem;
+  transition: width 0.2s;
+}
+
+.sidebarOpen {
+  padding-left: 1.2rem !important;
+  padding-inline: 2rem;
+  width: 15rem;
+}

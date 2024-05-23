@@ -1,0 +1,15 @@
+.mealButton {
+  cursor: pointer;
+  border-radius: 2rem;
+  border-color: #5f456e ;
+  border-width: 1px ;
+}
+.dashboard1 {
+  padding: 1rem;
+  background-color: #dcd9f4;
+}
+.dashboard2 {
+  padding: 1rem;
+  background-color: #504d64;
+  color: #d5d0ee;
+}

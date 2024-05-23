@@ -1,0 +1,49 @@
+.App {
+  text-align: center;
+}
+
+h1 {
+  margin: 0rem;
+  padding: 0rem;
+  height: fit-content;
+}
+
+h2 {
+  margin: 0rem;
+  padding: 0rem;
+  height: fit-content;
+}
+
+button {
+  all: unset;
+}
+
+button:focus {
+  outline: revert;
+}
+.page {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: calc(100vh - 4rem);
+  padding-top: 4rem;
+  overflow-x: hidden !important;
+}
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
