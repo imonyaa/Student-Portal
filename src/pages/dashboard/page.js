@@ -47,6 +47,7 @@ const Dashboard = () => {
       return newMealsList;
     });
     e.target.reset();
+    
   };
 
   const handleChangeMeal = (value) => {
@@ -114,4 +115,5 @@ const Dashboard = () => {
     </div>
   );
 };
+// comment uwu
 export default Dashboard;
