@@ -34,7 +34,7 @@ const Dashboard = () => {
       return newMealsList; 
     });
   };
-  //lopp fr msdadge
+  //lopp fr msdaasjdkahsdjkgaskjdgjfadsadhgadge
   const submitHandler = (e) => {
     e.preventDefault();
     setMealsList((prevMealsList) => {
