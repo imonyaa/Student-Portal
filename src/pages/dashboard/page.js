@@ -31,10 +31,10 @@ const Dashboard = () => {
     setMealsList((prevMealsList) => {
       let newMealsList = [...prevMealsList];
       newMealsList[index].isEaten = 2;
-      return newMealsList;
+      return newMealsList; 
     });
   };
-
+// added a comment
   const submitHandler = (e) => {
     e.preventDefault();
     setMealsList((prevMealsList) => {
