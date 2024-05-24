@@ -34,7 +34,6 @@ const Dashboard = () => {
       return newMealsList; 
     });
   };
-// added a comment
   const submitHandler = (e) => {
     e.preventDefault();
     setMealsList((prevMealsList) => {
