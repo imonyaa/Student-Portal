@@ -34,7 +34,7 @@ const Dashboard = () => {
       return newMealsList; 
     });
   };
-  //lop
+  //lopp
   const submitHandler = (e) => {
     e.preventDefault();
     setMealsList((prevMealsList) => {
