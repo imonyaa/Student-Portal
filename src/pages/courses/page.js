@@ -10,7 +10,8 @@ import image5 from "../../public/images/course5.png";
 import image6 from "../../public/images/course6.png";
 import image7 from "../../public/images/course7.png";
 
-const Courses = () => {
+const Courses = (props) => {
+  document.title = props.title;
   const courses = [
     {
       image: image0,

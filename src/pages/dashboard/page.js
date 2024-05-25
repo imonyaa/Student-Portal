@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   //------------------------ states------------------------------------------------
+  const []=useState();
   
   //------------------------- useEffect---------------------------------------------
+
+ 
+    document.title = props.title;
   
 
   //------------------------- handlers---------------------------------------------
@@ -19,12 +23,10 @@ const Dashboard = () => {
       <div>
         <h1 className="title">Dashboard</h1>
         <p className="description">
-          On this page, you will discover , .
+          On this page, you will meet an overview of your courses, assignments, grades, and every new announcement regarding the course you take. 
         </p>
       </div>
-      
     </section>
   );
 };
-// comment uwu
 export default Dashboard;
