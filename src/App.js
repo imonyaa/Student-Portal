@@ -15,14 +15,12 @@ function App() {
   
   return (
     <div className="App">
-      
-      <ScrollToTop />
       <Header openNav={openNav} setOpenNav={setOpenNav} />
       <div className="page">
         <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
         <div className="page-content">
           <Routes>
-            <Route index path="/dashboard" element={<Dashboard title ="Dashboard" />} />
+            <Route path="/dashboard" index element={<Dashboard title ="Dashboard" />} />
             <Route path="/courses" element={<Courses title ="Courses"/>}  />
             <Route path="/assignments" element={<h1>Assignments</h1>} title ="Assignments" />
             <Route path="/calender" element={<h1>Calender</h1>} title ="Calendar" />
