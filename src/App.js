@@ -2,7 +2,7 @@ import { useState, useLocation, useEffect } from "react";
 import "./App.css";
 import Header from "./components/header/header";
 import Sidebar from "./components/sidebar/sidebar";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Courses from "./pages/courses/page";
 import Dashboard from "./pages/dashboard/page";
 import ScrollToTop from "./components/scrollToTop";
@@ -15,6 +15,8 @@ function App() {
   
   return (
     <div className="App">
+      
+      <ScrollToTop />
       <Header openNav={openNav} setOpenNav={setOpenNav} />
       <div className="page">
         <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
@@ -26,6 +28,8 @@ function App() {
             <Route path="/calender" element={<h1>Calender</h1>} title ="Calendar" />
             <Route path="/grades" element={<h1>Grades</h1>} title ="Grades" />
             <Route path="/settings" element={<h1>Settings</h1>} title ="Settings" />
+            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="*" element={<h1>404 ERROR Page not Available.</h1>} title ="No Page"/>
           </Routes>
         </div>
       </div>
@@ -35,3 +39,4 @@ function App() {
 }
 
 export default App;
+			
