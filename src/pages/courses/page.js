@@ -11,7 +11,7 @@ import image6 from "../../public/images/course6.png";
 import image7 from "../../public/images/course7.png";
 
 const Courses = (props) => {
-  document.title = props.title;
+  useEffect(()=>{document.title = props.title;},[props.title]);
   const courses = [
     {
       image: image0,

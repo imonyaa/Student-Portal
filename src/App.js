@@ -6,7 +6,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Courses from "./pages/courses/page";
 import Dashboard from "./pages/dashboard/page";
 import Assignments from "./pages/assignments/page";
-import Calendar from "./pages/calender/page";
+import Calendar from "./pages/calendar/page";
 import Grades from "./pages/grades/page";
 import Settings from "./pages/settings/page";
 import ScrollToTop from "./components/scrollToTop";
