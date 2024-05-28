@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import "./courses.css";
 import CourseCard from "../../components/cards/courses-cards/course-card";
 import image0 from "../../public/images/course0.png";
