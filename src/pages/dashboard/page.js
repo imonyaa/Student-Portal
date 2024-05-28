@@ -88,6 +88,7 @@ const Dashboard = () => {
 
       <div className="dashboard2">
         <h> Total meals Eaten is: {Eaten}</h>
+        <input type="email"></input>
       </div>
 
       <div className="dashboard1">
