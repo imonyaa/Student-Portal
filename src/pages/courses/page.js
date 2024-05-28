@@ -75,7 +75,7 @@ const Courses = (props) => {
     },
     {
       image: image4,
-      title: "electrical engeneering",
+      title: "electrical engineering",
       description: "description",
     },
   ];
