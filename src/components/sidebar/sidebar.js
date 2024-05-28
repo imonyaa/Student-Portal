@@ -18,7 +18,7 @@ const Sidebar = ({ openNav, setOpenNav }) => {
       path: "/assignments",
     },
     {
-      label: "Calender",
+      label: "Calendar",
       icon: "solar:calendar-broken",
       path: "/calender",
     },

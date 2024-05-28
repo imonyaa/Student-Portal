@@ -29,4 +29,4 @@ const Calendar = (props) => {
     </section>
   );
 };
-export default Dashboard;
+export default Calendar;

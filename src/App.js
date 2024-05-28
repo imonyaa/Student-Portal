@@ -5,6 +5,10 @@ import Sidebar from "./components/sidebar/sidebar";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Courses from "./pages/courses/page";
 import Dashboard from "./pages/dashboard/page";
+import Assignments from "./pages/assignments/page";
+import Calendar from "./pages/calender/page";
+import Grades from "./pages/grades/page";
+import Settings from "./pages/settings/page";
 import ScrollToTop from "./components/scrollToTop";
 
 function App() {
@@ -24,10 +28,10 @@ function App() {
           <Routes>
             <Route path="/dashboard" index element={<Dashboard title ="Dashboard" />} />
             <Route path="/courses" element={<Courses title ="Courses"/>}  />
-            <Route path="/assignments" element={<h1>Assignments</h1>} title ="Assignments" />
-            <Route path="/calender" element={<h1>Calender</h1>} title ="Calendar" />
-            <Route path="/grades" element={<h1>Grades</h1>} title ="Grades" />
-            <Route path="/settings" element={<h1>Settings</h1>} title ="Settings" />
+            <Route path="/assignments" element={<Assignments title ="Assignments"/>}  />
+            <Route path="/calender" element={<Calendar title ="Calendar" />} />
+            <Route path="/grades" element={<Grades title ="Grades"/>}  />
+            <Route path="/settings" element={<Settings title ="Settings"/>}  />
             <Route path="/" element={<Navigate to="/dashboard" />} />
             <Route path="*" element={<h1>404 ERROR Page not Available.</h1>} title ="No Page"/>
           </Routes>

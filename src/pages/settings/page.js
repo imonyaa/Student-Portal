@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./dashboard.css";
+import "./settings.css";
 
-const Dashboard = (props) => {
+const Settings = (props) => {
   //------------------------ states------------------------------------------------
   const []=useState();
   
@@ -19,14 +19,14 @@ const Dashboard = (props) => {
 
   //------------------------- render---------------------------------------------
   return (
-    <section className="dashboard" id="dashboard">
+    <section className="settings" id="settings">
       <div>
-        <h1 className="title">Dashboard</h1>
+        <h1 className="title">Settings</h1>
         <p className="description">
-          On this page, you will meet an overview of your courses, assignments, grades, and every new announcement regarding the course you take. 
+          On this page, you can edit your profile adn control the settings to your preference.
         </p>
       </div>
     </section>
   );
 };
-export default Dashboard;
+export default Settings;

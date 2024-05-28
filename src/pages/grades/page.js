@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./dashboard.css";
+import "./grades.css";
 
-const Dashboard = (props) => {
+const Grades = (props) => {
   //------------------------ states------------------------------------------------
   const []=useState();
   
@@ -19,14 +19,14 @@ const Dashboard = (props) => {
 
   //------------------------- render---------------------------------------------
   return (
-    <section className="dashboard" id="dashboard">
+    <section className="grades" id="grades">
       <div>
-        <h1 className="title">Dashboard</h1>
+        <h1 className="title">Grades</h1>
         <p className="description">
-          On this page, you will meet an overview of your courses, assignments, grades, and every new announcement regarding the course you take. 
+          On this page, you will view the marks of your exams and quizzes you took throughout the academic year.
         </p>
       </div>
     </section>
   );
 };
-export default Dashboard;
+export default Grades;
