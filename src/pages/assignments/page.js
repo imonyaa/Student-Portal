@@ -8,7 +8,7 @@ const Assignments = (props) => {
   //------------------------- useEffect---------------------------------------------
 
  
-    document.title = props.title;
+  useEffect(()=>{document.title = props.title;},[props.title]);
   
 
   //------------------------- handlers---------------------------------------------
@@ -23,7 +23,7 @@ const Assignments = (props) => {
       <div>
         <h1 className="title">Assignments</h1>
         <p className="description">
-          On this page, you will find your Assignments, Quizzes, and your Homeworks. 
+          On this page, you will find your Assignments, Quizzes, and your Homework. 
         </p>
       </div>
     </section>

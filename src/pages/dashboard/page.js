@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 
 const Dashboard = (props) => {
-  //------------------------ states------------------------------------------------
+  //------------------------ states-------------------------------------------------
   const []=useState();
   
   //------------------------- useEffect---------------------------------------------
@@ -11,13 +11,13 @@ const Dashboard = (props) => {
     
   
 
-  //------------------------- handlers---------------------------------------------
+  //------------------------- handlers-----------------------------------------------
   
 
   //------------------------- components---------------------------------------------
   
 
-  //------------------------- render---------------------------------------------
+  //------------------------- render-------------------------------------------------
   return (
     <section className="dashboard" id="dashboard">
       <div>
@@ -25,7 +25,9 @@ const Dashboard = (props) => {
         <p className="description">
           On this page, you will meet an overview of your courses, assignments, grades, and every new announcement regarding the course you take. 
         </p>
+        
       </div>
+
     </section>
   );
 };
