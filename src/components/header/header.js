@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../../public/images/logo.svg";
 
 import "./header.css";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -27,7 +28,7 @@ const Header = ({ openNav, setOpenNav }) => {
               />
             )}
           </button>
-          <h1 className="title">Student Portal</h1>
+          <img src={logo} height = "50rem" />
         </div>
         <div className="right-container">
           <h2 className="username">Imane Otmanine</h2>
