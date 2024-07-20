@@ -36,15 +36,15 @@ const Header = ({ openNav, setOpenNav }) => {
           </button>
           <img src={logo} height = "50rem" />
         </div>
-        <div className="right-container"    >
-          <h2 className="username" onClick={handleProfileClick} >Otmanine Imane</h2>
+        <button className="right-container"  onClick={handleProfileClick}  >
+          <h2 className="username" >Otmanine Imane</h2>
           <img
             className="user-image"
             src={"https://randomuser.me/api/portraits/women/49.jpg"}
             alt=""
-            onClick={handleProfileClick}
+            
           />
-        </div>
+        </button>
       </div>
     </header>
   );

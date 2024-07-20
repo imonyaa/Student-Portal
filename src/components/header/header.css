@@ -51,6 +51,7 @@
   font-family: "Outfit", sans-serif;
   font-weight: 500;
   color: black !important;
+  cursor: pointer;
 }
 
 .user-image {
@@ -60,6 +61,7 @@
   border: 2px solid rgb(255, 255, 255);
   border-radius: 50%;
   object-fit: contain;
+  cursor: pointer;
 }
 
 .right-container {
