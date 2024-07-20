@@ -8,6 +8,7 @@ import Dashboard from "./pages/dashboard/page";
 import Assignments from "./pages/assignments/page";
 import Calendar from "./pages/calendar/page";
 import Grades from "./pages/grades/page";
+import Profile from "./pages/profile/page";
 import Settings from "./pages/settings/page";
 import ScrollToTop from "./components/scrollToTop";
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/calender" element={<Calendar title ="Calendar" />} />
             <Route path="/grades" element={<Grades title ="Grades"/>}  />
             <Route path="/settings" element={<Settings title ="Settings"/>}  />
+            <Route path="/profile" element={<Profile title ="Profile"/>} />
             <Route path="/" element={<Navigate to="/dashboard" />} />
             <Route path="*" element={<h1>404 ERROR Page not Available.</h1>} title ="No Page"/>
           </Routes>
