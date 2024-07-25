@@ -22,25 +22,25 @@ const Header = ({ openNav, setOpenNav }) => {
           <button onClick={handleClick} className="nav-button">
             {openNav ? (
               <Icon
-                fontSize={"2.5rem"}
+                fontSize={"2rem"}
                 icon="mingcute:close-line"
                 style={{ color: "#512E67" }}
               />
             ) : (
               <Icon
-                fontSize={"2.5rem"}
+                fontSize={"2rem"}
                 icon="charm:menu-hamburger"
                 style={{ color: "#512E67" }}
               />
             )}
           </button>
-          <img src={logo} height = "50rem" />
+          <img src={logo} class="h-12" />
         </div>
         <button className="right-container"  onClick={handleProfileClick}  >
           <h2 className="username" >Otmanine Imane</h2>
           <img
             className="user-image"
-            src={"https://randomuser.me/api/portraits/women/49.jpg"}
+            src={"https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"}
             alt=""
             
           />
