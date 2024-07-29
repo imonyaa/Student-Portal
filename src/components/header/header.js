@@ -39,7 +39,7 @@ const Header = ({ openNav, setOpenNav }) => {
         <button className="right-container"  onClick={handleProfileClick}  >
           <h2 className="username" >Otmanine Imane</h2>
           <img
-            className="user-image"
+            className=" h-12 w-12 rounded-full object-cover cursor-pointer"
             src={"https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"}
             alt=""
             
