@@ -16,6 +16,14 @@ h2 {
 
 button {
   all: unset;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 button:focus {

@@ -16,7 +16,7 @@
 }
 
 .sidebar-spacer {
-  width: 3rem;
+  width: 4.4rem;
   transition: width 0.2s;
 }
 
@@ -25,4 +25,3 @@
   padding-inline: 2rem;
   width: 15rem;
 }
-
