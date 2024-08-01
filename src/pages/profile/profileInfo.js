@@ -52,7 +52,7 @@ const ProfileInfo = (props) => {
         </p>
         {user.map((item, index) => (
           <div className="   flex items-start w-full ">
-            <p className=" flex items-center justify-end font-roboto font-semibold text-right w-1/3 text-base h-12 m-1">
+            <p className=" flex items-center justify-end font-roboto font-semibold text-right w-1/3 text-base h-12 m-1      ">
               {item.label}ㅤ
             </p>
             <p

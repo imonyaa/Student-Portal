@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import ErrorMessage from "./errorMessage";
+import ErrorMessage from "../../components/errorMessage";
 import Button from "../../components/button";
 
-const EditProfile = (props) => {
+const EditProfileForm = (props) => {
   const user = props.user;
   const schema = yup.object().shape({
     email: yup
@@ -135,4 +135,4 @@ const EditProfile = (props) => {
   );
 };
 
-export default EditProfile;
+export default EditProfileForm;

@@ -27,11 +27,6 @@ const Sidebar = ({ openNav, setOpenNav }) => {
       icon: "mynaui:list-check",
       path: "/grades",
     },
-    {
-      label: "Settings",
-      icon: "solar:settings-linear",
-      path: "/settings",
-    },
   ];
 
   const { pathname } = useLocation();

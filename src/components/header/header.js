@@ -5,21 +5,20 @@ import { useNavigate } from "react-router-dom";
 import "./header.css";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-const Header = ({ openNav, setOpenNav }) => {
-  const navigate= useNavigate();
+const Header = ({ openNav, setOpenNav, isLoggedIn }) => {
+  const navigate = useNavigate();
   const handleClick = () => {
     setOpenNav(!openNav);
-  };
-
-  const handleProfileClick = () => {
-    navigate("/profile");
   };
 
   return (
     <header className="header">
       <div className="header-container">
         <div className="left-container">
-          <button onClick={handleClick} className="nav-button">
+          <button
+            onClick={handleClick}
+            className={isLoggedIn ? "nav-button" : "invisible "}
+          >
             {openNav ? (
               <Icon
                 fontSize={"2rem"}
@@ -34,17 +33,30 @@ const Header = ({ openNav, setOpenNav }) => {
               />
             )}
           </button>
-          <img src={logo} class="h-12" />
+          <button
+            className="logo-button"
+            onClick={() => {
+              isLoggedIn ? navigate("/dashboard") : navigate("/login");
+            }}
+          >
+            <img src={logo} class="h-12" />
+          </button>
         </div>
-        <button className="right-container"  onClick={handleProfileClick}  >
-          <h2 className="username" >Otmanine Imane</h2>
-          <img
-            className=" h-12 w-12 rounded-full object-cover cursor-pointer"
-            src={"https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"}
-            alt=""
-            
-          />
-        </button>
+        {isLoggedIn && (
+          <button
+            className="right-container"
+            onClick={() => navigate("/profile")}
+          >
+            <h2 className="username">Otmanine Imane</h2>
+            <img
+              className=" h-12 w-12 rounded-full object-cover cursor-pointer"
+              src={
+                "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"
+              }
+              alt=""
+            />
+          </button>
+        )}
       </div>
     </header>
   );

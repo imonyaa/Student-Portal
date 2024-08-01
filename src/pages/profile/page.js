@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import ProfileInfo from "./profileInfo";
-import EditProfile from "./editProfile";
+import EditProfileForm from "./editProfileForm";
 
 const Profile = (props) => {
   useEffect(() => {
@@ -38,7 +38,7 @@ const Profile = (props) => {
             setIsDisabled={setIsDisabled}
           />
         ) : (
-          <EditProfile
+          <EditProfileForm
             user={user}
             isDisabled={isDisabled}
             setIsDisabled={setIsDisabled}

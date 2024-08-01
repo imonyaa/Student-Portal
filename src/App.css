@@ -33,7 +33,7 @@ button:focus {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 1rem);
   padding-top: 4rem;
   overflow-x: hidden !important;
 }
