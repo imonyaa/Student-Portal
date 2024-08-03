@@ -7,23 +7,26 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorMessage from "../../components/errorMessage";
+import axios from "../../api/axios";
 
 function Login(props) {
+  // set page title ----------------------------------------------------------------------------------------------------------
   useEffect(() => {
     document.title = props.title;
   }, [props.title]);
 
+  //validation schema ----------------------------------------------------------------------------------------------------------
   const schema = yup.object().shape({
     email: yup
       .string()
-      .email("You must use a valid e-mail")
-      .required("You must write your e-mail"),
+      .email("You must use a valid email")
+      .required("You must fill your email"),
     password: yup
       .string()
-      .required("You must write your password")
+      .required("You must fill your password")
       .min(8, "The password must be at least 8 characters"),
   });
-
+  // useForm ----------------------------------------------------------------------------------------------------------
   const {
     register,
     handleSubmit,
@@ -32,12 +35,28 @@ function Login(props) {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const onSubmit = (data) => {
+  // submit handler ----------------------------------------------------------------------------------------------------------
+  const onSubmit = async (data) => {
     console.log(data);
+    try {
+      const response = await axios.post(
+        "https://localhost:3500/login",
+        JSON.stringify(data),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+      props.setToken(response.token);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  //states ----------------------------------------------------------------------------------------------------------
   const [isFormHidden, setIsFormHidden] = useState(true);
+
+  //jsx ---------------------------------------------------------------------------------------------------------------
   return (
     <div
       className={

@@ -1,6 +1,7 @@
 import React from "react";
 import image1 from "../../../public/images/course0.png";
 import "./course-card.css";
+import Button from "../../button";
 
 const CourseCard = ({
   image = "",
@@ -15,7 +16,7 @@ const CourseCard = ({
         <p>{description}</p>
       </div>
 
-      <button className="view-more">View More</button>
+      <Button>View More</Button>
     </div>
   );
 };

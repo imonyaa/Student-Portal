@@ -39,22 +39,3 @@
   font-size: 0.9rem;
   width: 97%;
 }
-
-.view-more {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-inline: 1rem;
-  padding-block: 0.5rem;
-  align-self: center;
-  font-size: 1rem;
-  border-radius: 2rem;
-  background-color: #dedffe;
-  font-family: "Outfit", sans-serif;
-  cursor: pointer;
-}
-
-.view-more:hover {
-  background-color: #b9a6d3;
-  color: white;
-}
