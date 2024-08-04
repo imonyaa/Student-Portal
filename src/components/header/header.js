@@ -67,25 +67,29 @@ const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
             </button>
 
             {showDropdown && (
-              <div className="dropdown flex flex-col justify-evenly absolute top-14 right-14 bg-softPurple w-32 h-20 rounded-2xl border-[1px] border-palePurple">
-                <button
-                  className="dropdown-item"
-                  onClick={() => {
-                    navigate("/profile");
-                    setShowDropdown(false);
-                  }}
-                >
-                  View profile
-                </button>
-                <button
-                  className="dropdown-item"
-                  onClick={() => {
-                    handleLogout();
-                    setShowDropdown(false);
-                  }}
-                >
-                  Logout
-                </button>
+              <div className="dropdown flex flex-col justify-evenly  absolute top-[60px] right-4 bg-softPurple w-32 h-20 rounded-2xl border-[1px] border-palePurple divide-y-[1px] divide-lilac">
+                <div className="">
+                  <button
+                    className="dropdown-item "
+                    onClick={() => {
+                      navigate("/profile");
+                      setShowDropdown(false);
+                    }}
+                  >
+                    View profile
+                  </button>
+                </div>
+                <div className="pt-1">
+                  <button
+                    className="dropdown-item "
+                    onClick={() => {
+                      handleLogout();
+                      setShowDropdown(false);
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
               </div>
             )}
           </div>
