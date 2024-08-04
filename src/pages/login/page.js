@@ -40,7 +40,7 @@ function Login(props) {
     console.log(data);
     try {
       const response = await axios.post(
-        "https://localhost:3500/login",
+        "http://localhost:3500/api/auth/login",
         JSON.stringify(data),
         {
           headers: { "Content-Type": "application/json" },

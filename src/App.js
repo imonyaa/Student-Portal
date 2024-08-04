@@ -16,7 +16,7 @@ function App() {
   document.title = Route.title || "Student Portal";
 
   const [openNav, setOpenNav] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div className="App">
@@ -25,6 +25,7 @@ function App() {
         openNav={openNav}
         setOpenNav={setOpenNav}
         isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
       />
       <div>
         <Routes>
