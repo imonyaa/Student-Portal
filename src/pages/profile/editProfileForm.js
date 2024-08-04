@@ -78,7 +78,7 @@ const EditProfileForm = (props) => {
         <p className="font-roboto email-role">{props.user.email}</p>
         <p className="font-roboto email-role">{props.user.role}</p>
       </div>
-      <div className="flex flex-col p-16 pl-1 pr-40  w-2/3 h-full gap-2">
+      <div className="flex flex-col justify-center p-16 pl-1 pr-40  w-2/3 h-full gap-2">
         <p className=" font-outfit text-[1.7rem] pl-4 font-medium text-darkPurple mb-4">
           Edit Your Profile
         </p>
