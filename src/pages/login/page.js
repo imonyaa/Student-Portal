@@ -8,12 +8,21 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorMessage from "../../components/errorMessage";
 import axios from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from "sonner";
+import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
+import { setUser } from "../../state/user/userSlice";
+import { useDispatch } from "react-redux";
 
-function Login(props) {
+function Login({ title, isLoggedIn, setIsLoggedIn }) {
   // set page title ----------------------------------------------------------------------------------------------------------
   useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+    document.title = title;
+  }, [title]);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   //validation schema ----------------------------------------------------------------------------------------------------------
   const schema = yup.object().shape({
@@ -30,27 +39,64 @@ function Login(props) {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
-    getValues,
   } = useForm({
     resolver: yupResolver(schema),
   });
   // submit handler ----------------------------------------------------------------------------------------------------------
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       const response = await axios.post(
         "http://localhost:3500/api/auth/login",
-        JSON.stringify(data),
+        data,
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
-      console.log(response);
-      props.setToken(response.token);
+      console.log(response?.data);
+      const accessToken = response?.data?.token;
+      if (accessToken) {
+        const user = response?.data;
+        Cookies.set("token", accessToken, {
+          expires: 30,
+          secure: true,
+          sameSite: "Strict",
+        });
+        setIsLoggedIn(true);
+        navigate("/dashboard");
+        dispatch(setUser(user));
+      }
     } catch (error) {
-      console.log(error);
+      if (!error?.response) {
+        console.log(error);
+        toast.error("No Server Response", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 0,
+          theme: "light",
+        });
+      } else if (error.response?.status === 401) {
+        toast.error("Email or password is incorrect", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 0,
+          theme: "light",
+        });
+        setError("email", {
+          type: "manual",
+          message: error.response.data.message,
+        });
+      }
     }
   };
   //states ----------------------------------------------------------------------------------------------------------
@@ -100,28 +146,31 @@ function Login(props) {
 
             <div>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex flex-col items-center w-full h-full">
-                  <input
-                    className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right mt-3 px-6 w-2/3 text-base h-14"
-                    type="text"
-                    placeholder="Email"
-                    {...register("email")}
-                  />
+                <div className="flex flex-col items-center w-full h-full ">
+                  <div className=" flex flex-col w-2/3 gap-1">
+                    <input
+                      className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right mt-3 px-6 w-full text-base h-14"
+                      type="text"
+                      placeholder="Email"
+                      {...register("email")}
+                    />
 
-                  {errors.email && (
-                    <ErrorMessage error={errors.email.message} />
-                  )}
+                    {errors.email && (
+                      <ErrorMessage error={errors.email.message} />
+                    )}
+                  </div>
+                  <div className=" flex flex-col w-2/3 gap-1">
+                    <input
+                      className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right mt-3 px-6 w-full text-base h-14"
+                      type="password"
+                      placeholder="Password"
+                      {...register("password")}
+                    />
 
-                  <input
-                    className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right mt-3 px-6 w-2/3 text-base h-14"
-                    type="password"
-                    placeholder="Password"
-                    {...register("password")}
-                  />
-
-                  {errors.password && (
-                    <ErrorMessage error={errors.password.message} />
-                  )}
+                    {errors.password && (
+                      <ErrorMessage error={errors.password.message} />
+                    )}
+                  </div>
 
                   <div className=" mt-4 w-2/3 flex justify-end">
                     <Button className="button" type="submit">
@@ -143,6 +192,18 @@ function Login(props) {
           </div>
         )
       }
+      <Toaster
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        richColors
+      />
     </div>
   );
 }

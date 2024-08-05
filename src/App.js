@@ -102,7 +102,11 @@ function App() {
             element={
               <div className="page">
                 <div className="page-content">
-                  <Login title="Student Portal" />
+                  <Login
+                    title="Student Portal"
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                  />
                 </div>
               </div>
             }

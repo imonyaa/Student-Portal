@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./header.css";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useSelector } from "react-redux";
 
 const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
     setIsLoggedIn(false);
     navigate("/login");
   };
+  const { firstName, lastName, profileImage } = useSelector(
+    (state) => state.userReducer.user
+  );
+  const fullName = `${firstName} ${lastName}`;
 
   return (
     <header className="header">
@@ -56,12 +61,10 @@ const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
               className="right-container relative"
               onClick={() => setShowDropdown(!showDropdown)}
             >
-              <h2 className="username">Otmanine Imane</h2>
+              <h2 className="username">{fullName}</h2>
               <img
                 className=" h-12 w-12 rounded-full object-cover cursor-pointer"
-                src={
-                  "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"
-                }
+                src={profileImage}
                 alt=""
               />
             </button>
