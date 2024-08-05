@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import "./header.css";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useSelector } from "react-redux";
+import { setUser } from "../../state/user/userSlice";
 
 const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = () => {
     Cookies.remove("token");
+    setUser({});
     setIsLoggedIn(false);
     navigate("/login");
   };

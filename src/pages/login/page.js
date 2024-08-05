@@ -108,7 +108,6 @@ function Login({ title, isLoggedIn, setIsLoggedIn }) {
           theme: "light",
         });
       }
-      errRef.current.focus();
     }
   };
   //states ----------------------------------------------------------------------------------------------------------
