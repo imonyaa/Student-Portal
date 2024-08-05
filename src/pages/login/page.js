@@ -96,7 +96,19 @@ function Login({ title, isLoggedIn, setIsLoggedIn }) {
           type: "manual",
           message: error.response.data.message,
         });
+      } else {
+        toast.error("Log in failed!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 0,
+          theme: "light",
+        });
       }
+      errRef.current.focus();
     }
   };
   //states ----------------------------------------------------------------------------------------------------------

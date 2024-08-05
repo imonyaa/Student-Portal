@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../public/images/logo.svg";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import "./header.css";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -15,7 +16,7 @@ const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
+    Cookies.remove("token");
     setIsLoggedIn(false);
     navigate("/login");
   };
