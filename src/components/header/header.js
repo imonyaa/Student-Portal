@@ -17,7 +17,7 @@ const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
   };
 
   const handleLogout = () => {
-    Cookies.remove("token");
+    Cookies.remove("accessToken");
     setUser({});
     setIsLoggedIn(false);
     navigate("/login");

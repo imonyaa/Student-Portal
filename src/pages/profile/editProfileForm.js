@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import ErrorMessage from "../../components/errorMessage";
-import Button from "../../components/button";
+import ErrorMessage from "../../components/utils/errorMessage";
+import Button from "../../components/utils/button";
 
 const EditProfileForm = (props) => {
   const user = props.user;

@@ -1,5 +1,6 @@
-import React from "react";
-import Button from "../../components/button";
+import React, { useEffect } from "react";
+import Button from "../../components/utils/button";
+import Cookies from "js-cookie";
 
 const ProfileInfo = (props) => {
   const user = [

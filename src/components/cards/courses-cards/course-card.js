@@ -1,7 +1,7 @@
 import React from "react";
 import image1 from "../../../public/images/course0.png";
 import "./course-card.css";
-import Button from "../../button";
+import Button from "../../utils/button";
 
 const CourseCard = ({
   image = "",

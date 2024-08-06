@@ -2,11 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import logo from "../../public/images/logo.svg";
 import books from "../../public/images/books.png";
-import Button from "../../components/button";
+import Button from "../../components/utils/button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import ErrorMessage from "../../components/errorMessage";
+import ErrorMessage from "../../components/utils/errorMessage";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
@@ -57,16 +57,16 @@ function Login({ title, isLoggedIn, setIsLoggedIn }) {
       );
       console.log(response?.data);
       const accessToken = response?.data?.token;
-      if (accessToken) {
+      if (accessToken !== null) {
         const user = response?.data;
-        Cookies.set("token", accessToken, {
+        Cookies.set("accessToken", accessToken, {
           expires: 30,
           secure: true,
           sameSite: "Strict",
         });
         setIsLoggedIn(true);
-        navigate("/dashboard");
         dispatch(setUser(user));
+        navigate("/dashboard");
       }
     } catch (error) {
       if (!error?.response) {

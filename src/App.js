@@ -10,13 +10,14 @@ import Login from "./pages/login/page";
 import Calendar from "./pages/calendar/page";
 import Grades from "./pages/grades/page";
 import Profile from "./pages/profile/page";
-import ScrollToTop from "./components/scrollToTop";
+import ScrollToTop from "./components/utils/scrollToTop";
+import ProtectedRoutes from "./components/utils/protectedRoutes";
 
 function App() {
   document.title = Route.title || "Student Portal";
 
   const [openNav, setOpenNav] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div className="App">
@@ -27,8 +28,8 @@ function App() {
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
       />
-      <div>
-        <Routes>
+      <Routes>
+        <Route element={<ProtectedRoutes />}>
           <Route
             path="/dashboard"
             index
@@ -96,28 +97,31 @@ function App() {
               </div>
             }
           />
-          <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route
-            path="/login"
-            element={
-              <div className="page">
-                <div className="page-content">
-                  <Login
-                    title="Student Portal"
-                    isLoggedIn={isLoggedIn}
-                    setIsLoggedIn={setIsLoggedIn}
-                  />
-                </div>
+            path="/"
+            element={<Navigate to={isLoggedIn ? "/dashboard" : "/login"} />}
+          />
+        </Route>
+        <Route
+          path="/login"
+          element={
+            <div className="page ">
+              <div className="page-content">
+                <Login
+                  title="Student Portal"
+                  isLoggedIn={isLoggedIn}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
               </div>
-            }
-          />
-          <Route
-            path="*"
-            element={<h1>404 ERROR Page not Available.</h1>}
-            title="No Page"
-          />
-        </Routes>
-      </div>
+            </div>
+          }
+        />
+        <Route
+          path="*"
+          element={<h1>404 ERROR Page not Available.</h1>}
+          title="No Page"
+        />
+      </Routes>
       <div className="footer" />
     </div>
   );
