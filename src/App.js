@@ -12,12 +12,15 @@ import Grades from "./pages/grades/page";
 import Profile from "./pages/profile/page";
 import ScrollToTop from "./components/utils/scrollToTop";
 import ProtectedRoutes from "./components/utils/protectedRoutes";
+import Cookies from "js-cookie";
+import AlreadyLoggedIn from "./components/utils/alreadyLoggedIn";
 
 function App() {
   document.title = Route.title || "Student Portal";
 
   const [openNav, setOpenNav] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isToken = Cookies.get("accessToken") ? true : false;
+  const [isLoggedIn, setIsLoggedIn] = useState(isToken);
 
   return (
     <div className="App">
@@ -102,20 +105,22 @@ function App() {
             element={<Navigate to={isLoggedIn ? "/dashboard" : "/login"} />}
           />
         </Route>
-        <Route
-          path="/login"
-          element={
-            <div className="page ">
-              <div className="page-content">
-                <Login
-                  title="Student Portal"
-                  isLoggedIn={isLoggedIn}
-                  setIsLoggedIn={setIsLoggedIn}
-                />
+        <Route element={<AlreadyLoggedIn />}>
+          <Route
+            path="/login"
+            element={
+              <div className="page ">
+                <div className="page-content">
+                  <Login
+                    title="Student Portal"
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                  />
+                </div>
               </div>
-            </div>
-          }
-        />
+            }
+          />
+        </Route>
         <Route
           path="*"
           element={<h1>404 ERROR Page not Available.</h1>}
