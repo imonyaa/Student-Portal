@@ -29,7 +29,6 @@
 
 .nav-button {
   background-color: transparent;
-  border: none;
   cursor: pointer;
 }
 
@@ -40,7 +39,7 @@
 } */
 
 .title {
-  font-size: 2rem;
+  font-size: 30px;
   color: #512e67 !important;
   font-family: "Outfit", sans-serif;
   font-weight: 500;

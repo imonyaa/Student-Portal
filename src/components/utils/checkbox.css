@@ -1,0 +1,5 @@
+#checkBox:checked ~ .check-1 {
+  @apply text-opacity-100;
+  @apply bg-lilac;
+  @apply border-none;
+}

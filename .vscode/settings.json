@@ -1,6 +1,4 @@
 {
-    "cSpell.words": [
-        "Imane",
-        "Otmanine"
-    ]
+  "cSpell.words": ["Imane", "Otmanine"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

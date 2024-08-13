@@ -8,15 +8,20 @@ const ProtectedRoutes = () => {
   const dispatch = useDispatch();
   const fetchUser = async (token) => {
     if (token) {
-      const response = await axios.get("http://localhost:3500/api/users/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      dispatch(setUser(response?.data));
+      try {
+        const response = await axios.get("http://localhost:3500/api/users/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        dispatch(setUser(response?.data));
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   const token = Cookies.get("accessToken");
+
   fetchUser(token);
   return token ? <Outlet /> : <Navigate to="/login" />;
 };

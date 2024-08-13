@@ -20,6 +20,7 @@ function Login({ title, isLoggedIn, setIsLoggedIn }) {
   useEffect(() => {
     document.title = title;
   }, [title]);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

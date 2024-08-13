@@ -1,0 +1,9 @@
+.pog {
+  border: 1px solid #c2a6d3 !important;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02) !important;
+  }
+}

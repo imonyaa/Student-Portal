@@ -1,4 +1,4 @@
-import { useState, useLocation, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import Header from "./components/header/header";
 import Sidebar from "./components/sidebar/sidebar";
@@ -14,6 +14,8 @@ import ScrollToTop from "./components/utils/scrollToTop";
 import ProtectedRoutes from "./components/utils/protectedRoutes";
 import Cookies from "js-cookie";
 import AlreadyLoggedIn from "./components/utils/alreadyLoggedIn";
+import CourseDetails from "./pages/course-details/page";
+import CreateCourse from "./pages/create-course/page";
 
 function App() {
   document.title = Route.title || "Student Portal";
@@ -52,6 +54,28 @@ function App() {
                 <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
                 <div className="page-content">
                   <Courses title="Courses" />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/courses/:id"
+            element={
+              <div className="page">
+                <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
+                <div className="page-content">
+                  <CourseDetails title="Course Details" />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/courses/create-course"
+            element={
+              <div className="page">
+                <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
+                <div className="page-content">
+                  <CreateCourse title="Create a course" />
                 </div>
               </div>
             }
