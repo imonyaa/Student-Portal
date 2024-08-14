@@ -1,25 +1,35 @@
 import React from "react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorMessage from "../../components/utils/errorMessage";
 import Button from "../../components/utils/button";
+import axios from "../../api/axios";
+import { Toaster, toast } from "sonner";
+import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
+import { setUser } from "../../state/user/userSlice";
+import { useDispatch } from "react-redux";
 
 const EditProfileForm = (props) => {
+  const dispatch = useDispatch();
   const user = props.user;
   const schema = yup.object().shape({
     email: yup
       .string()
       .email("You must use a valid e-mail")
       .required("You must add an e-mail"),
-    password: yup
+    currentPassword: yup
+      .string()
+      .required("You must fill your current password")
+      .min(8, "The password must be at least 8 characters"),
+    newPassword: yup
       .string()
       .required("You must add a password")
       .min(8, "Your password must be at least 8 characters"),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref("password"), null], "Your passwords do not match")
+      .oneOf([yup.ref("newPassword"), null], "Your passwords do not match")
       .required("You must confirm your password"),
   });
 
@@ -28,16 +38,90 @@ const EditProfileForm = (props) => {
     handleSubmit,
     watch,
     formState: { errors },
-    getValues,
+    setError,
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: { image: user.image },
+    defaultValues: { image: user.profileImage },
   });
-  const [isDisabled, setIsDisabled] = useState(true);
+  const accessToken = Cookies.get("accessToken");
 
-  const onSubmit = (data) => {
-    props.setIsDisabled(true);
+  // submit handler
+  const onSubmit = async (data) => {
+    console.log("Submitting form...");
     console.log(data);
+    try {
+      // Create a FormData object to handle file uploads along with other form data
+      const formData = new FormData();
+
+      // Append regular form data
+      formData.append("email", data.email);
+      formData.append("currentPassword", data.currentPassword);
+      formData.append("newPassword", data.newPassword);
+
+      // Append the image file if it exists
+      if (data.image && data.image[0]) {
+        formData.append("file", data.image[0]);
+      }
+      const response = await axios.put(
+        "http://localhost:3500/api/users/me/update",
+        formData,
+
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log("response: " + response?.data);
+      //  TODO: display success toast
+      //  TODO: dispatch(setUser(response?.data?.user));
+      //  TODO: props.setIsDisabled(true);
+    } catch (error) {
+      console.log("error:" + error);
+      // FIXME: fix errors and what they display and toasters
+      //  TODO: display error toast
+      //  TODO: reset form after error
+      /*if (!error?.response) {
+        console.log(error);
+        toast.error("No Server Response", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 0,
+          theme: "light",
+        });
+      } else if (error.response?.status === 401) {
+        toast.error("Email or password is incorrect", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 0,
+          theme: "light",
+        });
+        setError("email", {
+          type: "manual",
+          message: error.response.data.message,
+        });
+      } else {
+        toast.error("Log in failed!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 0,
+          theme: "light",
+        });
+      }*/
+    }
   };
 
   return (
@@ -86,47 +170,77 @@ const EditProfileForm = (props) => {
           <p className=" flex items-center justify-end font-roboto font-semibold text-right w-1/3 text-base h-12 m-1">
             Emailㅤ
           </p>
-          <input
-            className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right px-6 w-1/3 text-base h-14"
-            type="text"
-            placeholder="Email"
-            {...register("email")}
-          />
+          <div className="flex flex-col gap-1 w-2/3">
+            <input
+              className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right px-6 w-full text-base h-14"
+              type="text"
+              placeholder="Email"
+              {...register("email")}
+            />
+            {errors.email && <ErrorMessage error={errors.email.message} />}
+          </div>
         </div>
-        {errors.email && <ErrorMessage error={errors.email.message} />}
+
+        <div className="flex items-start w-full ">
+          <p className=" flex items-center justify-end font-roboto font-semibold text-right w-1/3 text-base h-12 m-1">
+            Current Passwordㅤ
+          </p>
+          <div className="flex flex-col w-2/3 gap-1">
+            <input
+              className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right px-6 w-full text-base h-14"
+              type="password"
+              placeholder="Current Password"
+              {...register("currentPassword")}
+            />
+            {errors.oldPassword && (
+              <ErrorMessage error={errors.oldPassword.message} />
+            )}
+          </div>
+        </div>
+
         <div className="flex items-start w-full ">
           <p className=" flex items-center justify-end font-roboto font-semibold text-right w-1/3 text-base h-12 m-1">
             Passwordㅤ
           </p>
-          <input
-            className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right px-6 w-1/3 text-base h-14"
-            type="password"
-            placeholder="Password"
-            {...register("password")}
-          />
+          <div className="flex flex-col gap-1 w-2/3 ">
+            <input
+              className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right px-6 w-full text-base h-14"
+              type="password"
+              placeholder="Password"
+              {...register("newPassword")}
+            />
+            {errors.password && (
+              <ErrorMessage error={errors.password.message} />
+            )}
+          </div>
         </div>
-        {errors.password && <ErrorMessage error={errors.password.message} />}
+
         <div className="flex items-start w-full ">
           <p className=" flex items-center justify-end font-roboto font-semibold text-right w-1/3 text-base h-12 m-1">
             Confirm Passwordㅤ
           </p>
-          <input
-            className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right px-6 w-1/3 text-base h-14"
-            type="password"
-            placeholder="Confirm Password"
-            {...register("confirmPassword")}
-          />
+          <div className="flex flex-col gap-1 w-2/3">
+            <input
+              className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right px-6 w-full text-base h-14"
+              type="password"
+              placeholder="Confirm Password"
+              {...register("confirmPassword")}
+            />
+            {errors.confirmPassword && (
+              <ErrorMessage error={errors.confirmPassword.message} />
+            )}
+          </div>
         </div>
-        {errors.confirmPassword && (
-          <ErrorMessage error={errors.confirmPassword.message} />
-        )}
 
-        <div className="w-full mt-4 flex justify-end">
+        <div className="w-full mt-4 flex justify-end gap-3">
           <Button
             className="button"
-            type="submit"
-            onClick={() => setIsDisabled(true)}
+            type="button"
+            onClick={() => props.setIsDisabled(true)}
           >
+            Cancel
+          </Button>
+          <Button className="button" type="submit" onClick={handleSubmit}>
             Save
           </Button>
         </div>

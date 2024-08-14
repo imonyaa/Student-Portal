@@ -4,24 +4,14 @@ import { useEffect, useState } from "react";
 import ProfileInfo from "./profileInfo";
 import EditProfileForm from "./editProfileForm";
 
+import { useSelector } from "react-redux";
+
 const Profile = (props) => {
   useEffect(() => {
     document.title = props.title;
   }, [props.title]);
   //fetch user data
-  const user = {
-    name: "Imane Otmanine",
-    role: "Student",
-    image:
-      "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg",
-    email: "otmanine.imane@gmail.com",
-    userID: "191932037791",
-    academicYear: "Master 2",
-    major: "Computer engineering",
-    group: "1",
-    password: "12345678",
-    confirmPassword: "12345678",
-  };
+  const { user } = useSelector((state) => state.userReducer);
 
   const [isDisabled, setIsDisabled] = useState(true);
 

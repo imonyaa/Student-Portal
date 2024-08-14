@@ -6,7 +6,7 @@ const ProfileInfo = (props) => {
   const user = [
     {
       label: "Name ",
-      value: props.user.name,
+      value: props.user.firstName + " " + props.user.lastName,
     },
     {
       label: "Email ",
@@ -16,34 +16,36 @@ const ProfileInfo = (props) => {
       label: "User ID ",
       value: props.user.userID,
     },
-    {
+    props.user.role === "student" && {
       label: "Academic Year ",
-      value: props.user.academicYear,
+      value: props.user.academicLevel + " " + props.user.academicYear,
     },
-    {
+    props.user.role === "student" && {
       label: "Major ",
       value: props.user.major,
     },
-    {
+    props.user.role === "student" && {
       label: "Group ",
       value: props.user.group,
     },
-  ];
+  ].filter(Boolean);
   return (
     <div className="flex w-full h-full items-center ">
       <div className="flex flex-col items-center justify-center pb-32 w-1/3 h-full rounded-[6rem] bg-white">
         <img
           src={
-            props.user.image
-              ? typeof props.user.image === "string"
-                ? props.user.image
-                : URL.createObjectURL(props.user.image[0])
+            props.user.profileImage
+              ? typeof props.user.profileImage === "string"
+                ? props.user.profileImage
+                : URL.createObjectURL(props.user.profileImage[0])
               : null
           }
-          className="flex justify-center items-center m-4 w-40 h-40 rounded-full cursor-auto border-lilac border-2 bg-lilac object-cover rounded-full"
+          className="flex justify-center items-center m-4 w-40 h-40  cursor-auto border-lilac border-2 bg-lilac object-cover rounded-full"
           alt="userImage"
         />
-        <p className="font-roboto font-semibold">{props.user.name}</p>
+        <p className="font-roboto font-semibold">
+          {props.user.firstName + " " + props.user.lastName}
+        </p>
         <p className="font-roboto email-role">{props.user.email}</p>
         <p className="font-roboto email-role">{props.user.role}</p>
       </div>

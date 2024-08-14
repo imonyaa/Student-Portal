@@ -9,7 +9,6 @@ import { setUser } from "../../state/user/userSlice";
 import { getCourseColor } from "../../utils/utils";
 import image1 from "../../public/images/noback.png";
 import { LectureCard } from "../../components/cards/lecture-cards/lecture-card";
-
 const { useState } = require("react");
 
 const CourseDetails = (props) => {
