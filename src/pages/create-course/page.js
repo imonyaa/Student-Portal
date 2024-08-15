@@ -9,7 +9,7 @@ const CreateCourse = (props) => {
   return (
     <div>
       <Button
-        className="rounded-full px-3 py-3 "
+        className="rounded-full px-3 py-4 "
         onClick={() => window.history.back()}
       >
         <Icon icon="ion:chevron-back-outline" className="text-[20px]" />

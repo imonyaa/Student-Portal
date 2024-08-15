@@ -12,13 +12,12 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, Roboto,
-    Outfit "Courier New", monospace;
+  font-family: Roboto, Outfit "Courier New", monospace;
 }
 
 *:focus {
-  outline: none;
-  box-shadow: none;
-  border-width: 2px;
-  border-color: #7b50f3;
+  outline-color: #7b50f3 !important;
+  box-shadow: none !important;
+  border-width: 2px !important;
+  border-color: #7b50f3 !important;
 }

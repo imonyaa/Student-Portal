@@ -55,7 +55,7 @@ const Courses = (props) => {
             your academic or professional journey.
           </p>
           {role == "teacher" ? (
-            <Button className="" onClick={createCourse}>
+            <Button className="!w-28" onClick={createCourse}>
               Add Course <Icon icon="mingcute:add-fill" className="ml-3" />
             </Button>
           ) : null}
