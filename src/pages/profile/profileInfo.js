@@ -20,10 +20,11 @@ const ProfileInfo = (props) => {
       label: "Academic Year ",
       value: props.user.academicLevel + " " + props.user.academicYear,
     },
-    props.user.role === "student" && {
-      label: "Major ",
-      value: props.user.major,
-    },
+    props.user.role === "student" &&
+      props.user.academicLevel == "Master" && {
+        label: "Major ",
+        value: props.user.major,
+      },
     props.user.role === "student" && {
       label: "Group ",
       value: props.user.group,
@@ -47,7 +48,7 @@ const ProfileInfo = (props) => {
           {props.user.firstName + " " + props.user.lastName}
         </p>
         <p className="font-roboto email-role">{props.user.email}</p>
-        <p className="font-roboto email-role">{props.user.role}</p>
+        <p className="font-roboto email-role font-medium">{props.user.role}</p>
       </div>
       <div className="flex flex-col justify-center p-16 pl-1 pr-40  w-2/3 h-full gap-2">
         <p className=" font-outfit text-[1.7rem] pl-4 font-medium text-darkPurple mb-4">

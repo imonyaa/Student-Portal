@@ -16,12 +16,7 @@ import ProtectedTeacherRoutes from "./components/utils/protectedTeacherRoutes";
 import Cookies from "js-cookie";
 import AlreadyLoggedIn from "./components/utils/alreadyLoggedIn";
 import CourseDetails from "./pages/course-details/page";
-import CreateCourse from "./pages/create-course/page";
 import EditCourse from "./pages/edit-course/page";
-import AddAssignment from "./pages/add-assignment/page";
-import AddAnnouncement from "./pages/add-announcement/page";
-import AddLecture from "./pages/add-lecture/page";
-
 function App() {
   document.title = Route.title || "Student Portal";
 
@@ -82,50 +77,6 @@ function App() {
                   <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
                   <div className="page-content">
                     <EditCourse title="Edit Course" />
-                  </div>
-                </div>
-              }
-            />
-            <Route
-              path="/courses/:id/edit-course/add-assignment"
-              element={
-                <div className="page">
-                  <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
-                  <div className="page-content">
-                    <AddAssignment title="Add Assignment" />
-                  </div>
-                </div>
-              }
-            />
-            <Route
-              path="/courses/:id/edit-course/add-announcement"
-              element={
-                <div className="page">
-                  <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
-                  <div className="page-content">
-                    <AddAnnouncement title="Add Announcement" />
-                  </div>
-                </div>
-              }
-            />
-            <Route
-              path="/courses/:id/edit-course/add-lecture"
-              element={
-                <div className="page">
-                  <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
-                  <div className="page-content">
-                    <AddLecture title="Add Lecture" />
-                  </div>
-                </div>
-              }
-            />
-            <Route
-              path="/courses/create-course"
-              element={
-                <div className="page">
-                  <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
-                  <div className="page-content">
-                    <CreateCourse title="Create a course" />
                   </div>
                 </div>
               }
