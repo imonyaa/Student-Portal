@@ -17,6 +17,7 @@ import Cookies from "js-cookie";
 import AlreadyLoggedIn from "./components/utils/alreadyLoggedIn";
 import CourseDetails from "./pages/course-details/page";
 import EditCourse from "./pages/edit-course/page";
+import LecturePreview from "./pages/lecture-preview/page";
 function App() {
   document.title = Route.title || "Student Portal";
 
@@ -65,6 +66,17 @@ function App() {
                 <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
                 <div className="page-content">
                   <CourseDetails title="Course Details" />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/courses/:id/:fileId"
+            element={
+              <div className="page">
+                <Sidebar openNav={openNav} setOpenNav={setOpenNav} />
+                <div className="page-content">
+                  <LecturePreview title="Lecture Preview" />
                 </div>
               </div>
             }

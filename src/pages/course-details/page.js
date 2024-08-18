@@ -86,7 +86,7 @@ const CourseDetails = (props) => {
       <div className="w-full h-full grid grid-cols-[0fr,1fr,0.3fr]">
         <div>
           <Button
-            className="rounded-full px-3 py-4 "
+            className="!rounded-full px-3 py-4 "
             onClick={() => window.history.back()}
           >
             <Icon icon="ion:chevron-back-outline" className="text-[20px]" />
