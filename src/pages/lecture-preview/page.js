@@ -12,6 +12,7 @@ const LecturePreview = (props) => {
   //--------------------------------------------------------useStates-----------------------------------------------
   const { user } = useSelector((state) => state.userReducer);
   const [file, setFile] = useState({});
+  const [fileContent, setFileContent] = useState("");
   const [course, setCourse] = useState({});
   const [sortedFiles, setSortedFiles] = useState([]);
   const { id } = useParams();
@@ -56,9 +57,31 @@ const LecturePreview = (props) => {
         setter([]);
       }
     };
+    const fetchFileContent = async (accessToken, fileId, setter) => {
+      try {
+        if (accessToken) {
+          const response = await axios.get(
+            "http://localhost:3500/api/courses/" +
+              id +
+              "/files/" +
+              fileId +
+              "/content",
+            {
+              headers: { Authorization: `Bearer ${accessToken}` },
+            }
+          );
+          setter(response.data);
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+        setter([]);
+      }
+    };
 
     fetchCourse(accessToken, setCourse);
     fetchFile(accessToken, fileId, setFile);
+    fetchFileContent(accessToken, fileId, setFileContent);
   }, []);
 
   //------------------------------------------------handlers--------------------------------------------------------
@@ -95,11 +118,12 @@ const LecturePreview = (props) => {
         </Button>
       </div>
       <div className="">
-        <h1 className="title !text-[28px] my-4 ml-9">{fileId}</h1>
-
-        {/* video player here */}
+        <h1 className="title !text-[28px] my-4 ml-9 ">{file.fileName}</h1>
+        <div className=" m-8 border border-palePurple rounded-[2rem]">
+          {/* video player here */}
+        </div>
       </div>
-      <div className="flex flex-col items-center p-4 w-full h-full mx-auto border border-palePurple bg-softPurple rounded-[3rem] overflow-hidden">
+      <div className="flex flex-col items-center p-4 w-full h-full mx-auto border border-palePurple bg-softPurple rounded-[2rem] overflow-hidden">
         <div className="flex flex-col items-center p-4 w-[90%] h-full mx-auto gap-4  overflow-hidden">
           {sortedFiles?.map((file) => (
             <LectureCard
@@ -111,9 +135,10 @@ const LecturePreview = (props) => {
               description={file?.description || file?.content}
               completionStatus={file?.completionStatus || []}
               studentId={user?.id}
-              fileId={file?.id}
+              fileId={file?._id}
               teacher={course?.teacher}
               isAnnouncement={file?.title?.length > 0 ? true : false}
+              id={course?._id}
             />
           ))}
         </div>

@@ -9,11 +9,6 @@
   border-radius: 2rem;
   border: 1px solid #c2a6d3;
   height: 24rem;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.02) !important;
-  }
 }
 
 .course-image {

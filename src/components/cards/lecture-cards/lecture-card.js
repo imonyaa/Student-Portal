@@ -6,6 +6,7 @@ import pdfComplete from "../../../public/images/pdf-complete.png";
 import Checkbox from "../../utils/checkbox";
 import "./lecture-card.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const LectureCard = ({
   fileName,
@@ -16,6 +17,7 @@ export const LectureCard = ({
   completionStatus,
   teacher,
   isAnnouncement,
+  id,
 }) => {
   const { user } = useSelector((state) => state.userReducer);
   const myStatus = completionStatus?.filter(
@@ -32,9 +34,22 @@ export const LectureCard = ({
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (isAnnouncement) {
+      return;
+    } else {
+      navigate(`/courses/${id}/${fileId}`);
+    }
+  };
+
   return (
-    <button className="  flex justify-between w-[90%] p-3 border !border-palePurple !rounded-2xl pog">
-      <div className="flex items-center">
+    <div
+      className="  flex justify-between w-full p-3 border !border-palePurple cursor-pointer !rounded-2xl pog"
+      onClick={handleClick}
+    >
+      <div className="flex items-center w-full">
         <img
           className={
             isAnnouncement ? "rounded-full w-12 h-12 object-cover" : "w-20 "
@@ -64,6 +79,6 @@ export const LectureCard = ({
           <Checkbox checked={myCompleted} disabled />
         </div>
       )}
-    </button>
+    </div>
   );
 };

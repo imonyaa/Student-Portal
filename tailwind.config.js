@@ -16,6 +16,7 @@ module.exports = {
         palePurple: "#C8C8E6",
         lilac: "#DEDEFF",
         softPurple: "#F2F2FE",
+        mostSoftPurple: "#f6f6fc",
         white: "#FFFFFF",
         black: "#000000",
         lightBlack: "#2B2B2B",

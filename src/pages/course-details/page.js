@@ -93,30 +93,32 @@ const CourseDetails = (props) => {
           </Button>
         </div>
         <div className="">
-          <h1 className="title !text-[28px] my-4 ml-9">{course.title}</h1>
-          <div className="flex  gap-4 items-center justify-end mr-10">
-            {user.role == "teacher" ? (
-              <Button
-                type="button"
-                className=""
-                onClick={() => {
-                  navigate("/courses/" + id + "/edit-course");
-                }}
-              >
-                Edit Course
-                <Icon icon="fluent:edit-32-filled" className="ml-3" />
-              </Button>
-            ) : null}
-            {user.role == "teacher" ? (
-              <Button
-                type="button"
-                className="!bg-[#fa6363] text-white hover:!bg-red-500 focus:!outline-red-600"
-                onClick={() => setPopup(true)}
-              >
-                Delete
-                <Icon icon="majesticons:delete-bin" className="ml-3 " />
-              </Button>
-            ) : null}
+          <div className="flex justify-between items-baseline">
+            <h1 className="title !text-[28px] my-4 ml-9">{course.title}</h1>
+            <div className="flex  gap-4 items-center justify-end mr-10">
+              {user.role == "teacher" ? (
+                <Button
+                  type="button"
+                  className=""
+                  onClick={() => {
+                    navigate("/courses/" + id + "/edit-course");
+                  }}
+                >
+                  Edit Course
+                  <Icon icon="fluent:edit-32-filled" className="ml-3" />
+                </Button>
+              ) : null}
+              {user.role == "teacher" ? (
+                <Button
+                  type="button"
+                  className="!bg-[#fa6363] text-white hover:!bg-red-500 focus:!outline-red-600"
+                  onClick={() => setPopup(true)}
+                >
+                  Delete
+                  <Icon icon="majesticons:delete-bin" className="ml-3 " />
+                </Button>
+              ) : null}
+            </div>
           </div>
 
           <div className="flex flex-col items-center p-4 w-[90%] h-full mx-auto gap-4  overflow-hidden">
@@ -130,20 +132,21 @@ const CourseDetails = (props) => {
                 description={file.description || file.content}
                 completionStatus={file.completionStatus || []}
                 studentId={user.id}
-                fileId={file.id}
+                fileId={file._id}
                 teacher={course.teacher}
                 isAnnouncement={file?.title?.length > 0 ? true : false}
+                id={course?._id}
               />
             ))}
           </div>
         </div>
-        <div className="flex flex-col items-center p-4 w-full h-full mx-auto border border-palePurple bg-softPurple rounded-[3rem] overflow-hidden">
+        <div className="flex flex-col items-center p-4 w-full h-full mx-auto border border-palePurple bg-softPurple rounded-[2rem] overflow-hidden">
           <div className="flex flex-col items-center mt-2">
             {course.title && (
               <img
                 src={image1}
                 alt="course"
-                className={`fit-cover w-[80%] rounded-[2rem] m-1 mt-3 ${getCourseColor(
+                className={`fit-cover w-[80%] rounded-3xl m-1 mt-3 mb-2 ${getCourseColor(
                   course.title
                 )}
         `}
@@ -152,9 +155,9 @@ const CourseDetails = (props) => {
             <h1 className="title !text-[20px] !text-center ">{course.title}</h1>
             <p className="text-[14px]">{course.description}</p>
           </div>
-          <div className="flex flex-col items-center m-4">
+          <div className="flex flex-col items-center m-4 w-full">
             <h1 className="title !text-[20px]">Teacher</h1>
-            <div className="flex items-center ">
+            <div className="flex items-center w-full pl-16">
               {course.teacher && (
                 <img
                   src={course.teacher.profileImage}
@@ -167,11 +170,11 @@ const CourseDetails = (props) => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center m-4">
+          <div className="flex flex-col items-center m-4 w-full">
             <h1 className="title !text-[20px]">Students</h1>
-            <div className="flex flex-col gap-2 ">
+            <div className="flex flex-col gap-2 w-full">
               {students.map((student) => (
-                <div className="flex items-center w-full ">
+                <div className="flex items-center w-full pl-16">
                   <img
                     src={student.profileImage}
                     alt="student"
