@@ -28,7 +28,33 @@ export const LectureCard = ({
   className = "",
   id,
   currentFile,
+  created_at,
 }) => {
+  function formatTimestamp(timestamp) {
+    const date = new Date(timestamp);
+    const now = new Date();
+
+    const isToday = date.toDateString() === now.toDateString();
+
+    const yesterday = new Date(now);
+    yesterday.setDate(now.getDate() - 1);
+    const isYesterday = date.toDateString() === yesterday.toDateString();
+
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+
+    if (isToday) {
+      return `Today at ${hours}:${minutes}`;
+    } else if (isYesterday) {
+      return `Yesterday at ${hours}:${minutes}`;
+    } else {
+      const day = date.getDate().toString().padStart(2, "0");
+      const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+      const year = date.getFullYear();
+
+      return `${day}-${month}-${year} at ${hours}:${minutes}`;
+    }
+  }
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.userReducer);
   const myStatus = completionStatus?.filter(
@@ -125,14 +151,19 @@ export const LectureCard = ({
           src={imageSource()}
           alt="lecture"
         />
-        <div className="ml-4 flex flex-col items-start">
-          <h1
-            className={` font-outfit text-left ${
-              myCompleted ? "font-medium text-gray-800" : "font-semibold"
-            }`}
-          >
-            {fileName}
-          </h1>
+        <div className="ml-4 flex flex-col items-start ">
+          <div className="flex items-baseline gap-3">
+            <h1
+              className={` font-outfit text-left ${
+                myCompleted ? "font-medium text-gray-800" : "font-semibold"
+              }`}
+            >
+              {fileName}
+            </h1>
+            <p className="text-gray-400 font-roboto font-medium text-[0.8rem] ">
+              {formatTimestamp(created_at)}
+            </p>
+          </div>
           <p
             className={` text-left font-roboto text-[0.9rem] ${
               myCompleted ? " text-gray-800" : "text-black"

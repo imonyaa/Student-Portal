@@ -3,6 +3,20 @@ import Button from "../../components/utils/button";
 import Cookies from "js-cookie";
 
 const ProfileInfo = (props) => {
+  const majorConvert = (major) => {
+    switch (major) {
+      case "Computer Engineering":
+        return "Computer Engineering";
+      case "Control":
+        return "  Control Engineering";
+      case "Power":
+        return "Power Engineering";
+      case "Telecommunications":
+        return "Telecommunications";
+      default:
+        return "";
+    }
+  };
   const user = [
     {
       label: "Name ",
@@ -23,7 +37,7 @@ const ProfileInfo = (props) => {
     props.user.role === "student" &&
       props.user.academicLevel == "Master" && {
         label: "Major ",
-        value: props.user.major,
+        value: majorConvert(props.user.major),
       },
     props.user.role === "student" && {
       label: "Group ",

@@ -121,6 +121,7 @@ const EditCourseMaterials = ({
                   teacher={course.teacher}
                   isAnnouncement={file?.title?.length > 0 ? true : false}
                   id={course?._id}
+                  created_at={file?.created_at}
                 />
               ))
             ) : (
