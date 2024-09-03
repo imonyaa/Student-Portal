@@ -40,6 +40,13 @@ const CourseDetails = (props) => {
 
     fetchCourseDetail(
       accessToken,
+      "http://localhost:3500/api/announcements/courses/" +
+        id +
+        "/announcements",
+      setAnnouncements
+    );
+    fetchCourseDetail(
+      accessToken,
       "http://localhost:3500/api/courses/" + id,
       setCourse
     );
@@ -48,19 +55,14 @@ const CourseDetails = (props) => {
       "http://localhost:3500/api/courses/" + id + "/students",
       setStudents
     );
-    fetchCourseDetail(
-      accessToken,
-      "http://localhost:3500/api/announcements/courses/" +
-        id +
-        "/announcements",
-      setAnnouncements
-    );
   }, []);
+
+  // sort the files
   const files = (course?.files ? [...course.files] : []).concat(
     announcements ? [...announcements] : []
   );
   const sortedFiles = files
-    ? [...files].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    ? files.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
     : [];
   const navigate = useNavigate();
   const handleDelete = async (accessToken, courseId) => {
@@ -80,7 +82,7 @@ const CourseDetails = (props) => {
       console.log(error);
     }
   };
-
+  // -------------------------------------- render ---------------------------------------------------------------------------------------------------
   return (
     <div className="w-full h-full">
       <div className="w-full h-full grid grid-cols-[0fr,1fr,0.3fr]">
@@ -99,23 +101,23 @@ const CourseDetails = (props) => {
               {user.role == "teacher" ? (
                 <Button
                   type="button"
+                  className="!bg-[#fa6363] text-white hover:!bg-red-500 focus:!outline-red-600"
+                  onClick={() => setPopup(true)}
+                >
+                  Delete
+                  <Icon icon="majesticons:delete-bin-line" className="ml-3 " />
+                </Button>
+              ) : null}
+              {user.role == "teacher" ? (
+                <Button
+                  type="button"
                   className=""
                   onClick={() => {
                     navigate("/courses/" + id + "/edit-course");
                   }}
                 >
                   Edit Course
-                  <Icon icon="fluent:edit-32-filled" className="ml-3" />
-                </Button>
-              ) : null}
-              {user.role == "teacher" ? (
-                <Button
-                  type="button"
-                  className="!bg-[#fa6363] text-white hover:!bg-red-500 focus:!outline-red-600"
-                  onClick={() => setPopup(true)}
-                >
-                  Delete
-                  <Icon icon="majesticons:delete-bin" className="ml-3 " />
+                  <Icon icon="fluent:edit-32-regular" className="ml-3" />
                 </Button>
               ) : null}
             </div>
@@ -124,16 +126,17 @@ const CourseDetails = (props) => {
           <div className="flex flex-col items-center p-4 w-[90%] h-full mx-auto gap-4  overflow-hidden">
             {sortedFiles?.map((file) => (
               <LectureCard
+                cardClickable={file?.title?.length > 0 ? false : true}
                 fileName={
-                  file.fileName ||
-                  course.teacher.firstName + " " + course.teacher.lastName
+                  file?.lectureName ||
+                  course?.teacher?.firstName + " " + course?.teacher?.lastName
                 }
-                fileType={file.fileType}
-                description={file.description || file.content}
-                completionStatus={file.completionStatus || []}
-                studentId={user.id}
-                fileId={file._id}
-                teacher={course.teacher}
+                fileType={file?.fileType}
+                description={file?.description || file?.content}
+                completionStatus={file?.completionStatus || []}
+                studentId={user?.id}
+                fileId={file?._id}
+                teacher={course?.teacher}
                 isAnnouncement={file?.title?.length > 0 ? true : false}
                 id={course?._id}
               />
@@ -170,24 +173,26 @@ const CourseDetails = (props) => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center m-4 w-full">
-            <h1 className="title !text-[20px]">Students</h1>
-            <div className="flex flex-col gap-2 w-full">
-              {students.map((student) => (
-                <div className="flex items-center w-full pl-16">
-                  <img
-                    src={student.profileImage}
-                    alt="student"
-                    className="h-10 w-10 mr-3 object-cover rounded-full"
-                  />
+          {students.length > 0 ? (
+            <div className="flex flex-col items-center m-4 w-full">
+              <h1 className="title !text-[20px]">Students</h1>
+              <div className="flex flex-col gap-2 w-full">
+                {students.map((student) => (
+                  <div className="flex items-center w-full pl-16">
+                    <img
+                      src={student.profileImage}
+                      alt="student"
+                      className="h-10 w-10 mr-3 object-cover rounded-full"
+                    />
 
-                  <p className="font-medium text-left">
-                    {student.firstName} {student.lastName}
-                  </p>
-                </div>
-              ))}
+                    <p className="font-medium text-left">
+                      {student?.firstName} {student?.lastName}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
       <DeletePopup

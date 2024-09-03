@@ -30,7 +30,7 @@ const DeletePopup = ({ setTrigger, itemToBeDeleted, trigger, onDelete }) => {
               onClick={onDelete}
             >
               Delete
-              <Icon icon="majesticons:delete-bin" className="ml-3 " />
+              <Icon icon="majesticons:delete-bin-line" className="ml-3 " />
             </Button>
           </div>
         </div>

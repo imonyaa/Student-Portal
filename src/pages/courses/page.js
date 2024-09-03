@@ -7,10 +7,12 @@ import { useSelector } from "react-redux";
 import Button from "../../components/utils/button";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useNavigate } from "react-router-dom";
+import CreateCoursePopup from "./course-popup.js";
 
 const Courses = (props) => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
+  const [popup, setPopup] = useState(false);
 
   useEffect(() => {
     document.title = props.title;
@@ -55,7 +57,13 @@ const Courses = (props) => {
             your academic or professional journey.
           </p>
           {role == "teacher" ? (
-            <Button className="!w-28" onClick={createCourse}>
+            <Button
+              className="!w-28"
+              type="button"
+              onClick={() => {
+                setPopup(true);
+              }}
+            >
               Add Course <Icon icon="mingcute:add-fill" className="ml-3" />
             </Button>
           ) : null}
@@ -75,6 +83,7 @@ const Courses = (props) => {
           <p></p>
         )}
       </div>
+      <CreateCoursePopup trigger={popup} setTrigger={setPopup} />
     </section>
   );
 };

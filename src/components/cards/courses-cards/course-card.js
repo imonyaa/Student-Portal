@@ -18,7 +18,7 @@ const CourseCard = ({ title, description, id }) => {
         className={`course-image ${getCourseColor(title)}
         `}
       />
-      <div className="details">
+      <div className="details overflow-auto">
         <h2>{title}</h2>
         <p>{description}</p>
       </div>

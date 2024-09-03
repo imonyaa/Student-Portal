@@ -1,4 +1,4 @@
-#checkBox:checked ~ .check-1 {
+input[type="checkbox"]:checked ~ .check-1 {
   @apply text-opacity-100;
   @apply bg-lilac;
   @apply border-none;

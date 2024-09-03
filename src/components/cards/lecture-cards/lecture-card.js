@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import video from "../../../public/images/video.png";
 import videoComplete from "../../../public/images/video-complete.png";
 import pdf from "../../../public/images/pdf.png";
@@ -6,24 +6,35 @@ import pdfComplete from "../../../public/images/pdf-complete.png";
 import Checkbox from "../../utils/checkbox";
 import "./lecture-card.css";
 import { useSelector } from "react-redux";
+import axios from "../../../api/axios";
+import DeletePopup from "../../utils/deletePopup";
+import Cookies from "js-cookie";
+import Button from "../../utils/button";
+import { Icon } from "@iconify/react/dist/iconify.js";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from "sonner";
 
 export const LectureCard = ({
   fileName,
   fileType,
   description,
   studentId,
+  cardClickable = true,
   fileId,
+  isDeletable,
   completionStatus,
   teacher,
   isAnnouncement,
+  className = "",
   id,
+  currentFile,
 }) => {
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.userReducer);
   const myStatus = completionStatus?.filter(
     (status) => studentId == status.student
   );
-  const myCompleted = myStatus[0]?.completed;
+  const myCompleted = myStatus[0]?.completed || false;
   const imageSource = () => {
     if (isAnnouncement) {
       return teacher.profileImage;
@@ -34,10 +45,65 @@ export const LectureCard = ({
     }
   };
 
-  const navigate = useNavigate();
+  const [popup, setPopup] = useState(false);
+  const accessToken = Cookies.get("accessToken");
+
+  const handleDelete = async (
+    accessToken,
+    courseId,
+    fileId,
+    isAnnouncement
+  ) => {
+    try {
+      let response = {};
+      if (isAnnouncement) {
+        response = await axios.delete(
+          `http://localhost:3500/api/announcements/${fileId}`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        );
+      } else {
+        response = await axios.delete(
+          `http://localhost:3500/api/courses/${courseId}/files/${fileId}`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        );
+      }
+      console.log(response.data);
+      toast.success(
+        `${isAnnouncement ? "Announcement" : "Lecture"} deleted successfully`,
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 0,
+          theme: "light",
+        }
+      );
+
+      window.location.reload();
+    } catch (error) {
+      toast.error("An error happened please try again", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: 0,
+        theme: "light",
+      });
+      console.log(error);
+    }
+  };
 
   const handleClick = () => {
-    if (isAnnouncement) {
+    if (isAnnouncement || !cardClickable) {
       return;
     } else {
       navigate(`/courses/${id}/${fileId}`);
@@ -46,7 +112,9 @@ export const LectureCard = ({
 
   return (
     <div
-      className="  flex justify-between w-full p-3 border !border-palePurple cursor-pointer !rounded-2xl pog"
+      className={`${className} flex justify-between w-full p-3 border !border-palePurple bg-white !rounded-2xl pog  ${
+        cardClickable ? "cursor-pointer hover:bg-mostSoftPurple" : ""
+      } ${currentFile == fileId ? "!bg-softPurple" : ""} `}
       onClick={handleClick}
     >
       <div className="flex items-center w-full">
@@ -59,7 +127,7 @@ export const LectureCard = ({
         />
         <div className="ml-4 flex flex-col items-start">
           <h1
-            className={` font-outfit ${
+            className={` font-outfit text-left ${
               myCompleted ? "font-medium text-gray-800" : "font-semibold"
             }`}
           >
@@ -76,9 +144,46 @@ export const LectureCard = ({
       </div>
       {user.role == "student" && !isAnnouncement && (
         <div className="flex items-center m-5">
-          <Checkbox checked={myCompleted} disabled />
+          <Checkbox
+            disabled
+            checked={myCompleted}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          />
         </div>
       )}
+      {isDeletable && (
+        <Button
+          type="button"
+          className="!bg-[#fa6363] text-white hover:!bg-red-500 focus:!outline-red-600 ml-10"
+          onClick={() => {
+            setPopup(true);
+          }}
+        >
+          Delete
+          <Icon icon="majesticons:delete-bin-line" className="ml-3 " />
+        </Button>
+      )}
+
+      <DeletePopup
+        trigger={popup}
+        onDelete={() => handleDelete(accessToken, id, fileId, isAnnouncement)}
+        itemToBeDeleted={fileName}
+        setTrigger={setPopup}
+      />
+      <Toaster
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        richColors
+      />
     </div>
   );
 };

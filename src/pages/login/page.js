@@ -10,7 +10,6 @@ import ErrorMessage from "../../components/utils/errorMessage";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { setUser } from "../../state/user/userSlice";
 import { useDispatch } from "react-redux";

@@ -55,3 +55,34 @@ button:focus {
     transform: rotate(360deg);
   }
 }
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* Adjust width as needed */
+}
+
+.custom-select select {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+}
+
+.custom-select .chevron-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #512e67;
+}
+
+/* Hide the chevron icon when the select is disabled */
+.custom-select select:disabled + .chevron-icon {
+  display: none;
+}
+
+.custom-select select:focus {
+  outline: none;
+}
