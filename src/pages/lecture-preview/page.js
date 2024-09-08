@@ -85,27 +85,18 @@ const LecturePreview = (props) => {
           (status) => status?.student != studentId
         ),
         {
-          ...studentStatus[0],
+          student: studentId,
           completed: true,
         },
       ],
     };
 
-    const updatedFileIndex = course?.files?.findIndex(
-      (file) => file._id == fileId
-    );
-
-    const updatedCourseFiles = course?.files?.map((file, index) => {
-      if (index == updatedFileIndex) {
-        return updatedFile;
-      } else {
-        return file;
-      }
-    });
-
     const updatedCourse = {
       ...course,
-      files: [...updatedCourseFiles],
+      files: [
+        ...course?.files?.filter((file) => file?._id != fileId),
+        updatedFile,
+      ],
     };
 
     setCourse(updatedCourse);
@@ -156,7 +147,9 @@ const LecturePreview = (props) => {
                 width="100%"
                 height="100%"
                 stopOnUnmount={true}
-                onEnded={() => handleMarkCompletion(accessToken, fileId)}
+                onEnded={() =>
+                  handleMarkCompletion(accessToken, fileId, id, markFileAsDone)
+                }
               />
             </div>
           )}

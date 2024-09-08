@@ -31,6 +31,9 @@ export const LectureCard = ({
   created_at,
 }) => {
   function formatTimestamp(timestamp) {
+    if (!timestamp) {
+      return "";
+    }
     const date = new Date(timestamp);
     const now = new Date();
 

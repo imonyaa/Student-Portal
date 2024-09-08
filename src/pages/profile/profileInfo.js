@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Button from "../../components/utils/button";
-import Cookies from "js-cookie";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const ProfileInfo = (props) => {
   const majorConvert = (major) => {
@@ -85,6 +85,7 @@ const ProfileInfo = (props) => {
         <div className="w-full mt-4 flex justify-end">
           <Button onClick={() => props.setIsDisabled(false)}>
             Edit profile
+            <Icon icon="fluent:edit-32-regular" className="ml-3" />
           </Button>
         </div>
       </div>
