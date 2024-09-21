@@ -144,56 +144,60 @@ const CourseDetails = (props) => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col items-center p-4 w-full h-full mx-auto border border-palePurple bg-softPurple rounded-[2rem] overflow-hidden">
-          <div className="flex flex-col items-center mt-2">
-            {course.title && (
-              <img
-                src={image1}
-                alt="course"
-                className={`fit-cover w-[80%] rounded-3xl m-1 mt-3 mb-2 ${getCourseColor(
-                  course.title
-                )}
-        `}
-              />
-            )}
-            <h1 className="title !text-[20px] !text-center ">{course.title}</h1>
-            <p className="text-[14px]">{course.description}</p>
-          </div>
-          <div className="flex flex-col items-center m-4 w-full">
-            <h1 className="title !text-[20px]">Teacher</h1>
-            <div className="flex items-center w-full pl-16">
-              {course.teacher && (
+        <div className="relative h-full">
+          <div className="flex flex-col items-center p-4 w-full h-[85vh] sticky top-12 mx-auto border border-palePurple bg-softPurple rounded-[2rem] overflow-hidden">
+            <div className="flex flex-col items-center mt-2">
+              {course.title && (
                 <img
-                  src={course.teacher.profileImage}
-                  alt="teacher"
-                  className="h-10 w-10 mr-3 object-cover rounded-full"
+                  src={image1}
+                  alt="course"
+                  className={`fit-cover w-[80%] rounded-3xl m-1 mt-3 mb-2 ${getCourseColor(
+                    course.title
+                  )}
+        `}
                 />
               )}
-              <p className="font-medium text-left">
-                {course.teacher?.firstName} {course.teacher?.lastName}
-              </p>
+              <h1 className="title !text-[20px] !text-center ">
+                {course.title}
+              </h1>
+              <p className="text-[14px] p-4">{course.description}</p>
             </div>
-          </div>
-          {students.length > 0 ? (
             <div className="flex flex-col items-center m-4 w-full">
-              <h1 className="title !text-[20px]">Students</h1>
-              <div className="flex flex-col gap-2 w-full">
-                {students.map((student) => (
-                  <div className="flex items-center w-full pl-16">
-                    <img
-                      src={student.profileImage}
-                      alt="student"
-                      className="h-10 w-10 mr-3 object-cover rounded-full"
-                    />
-
-                    <p className="font-medium text-left">
-                      {student?.firstName} {student?.lastName}
-                    </p>
-                  </div>
-                ))}
+              <h1 className="title !text-[20px]">Teacher</h1>
+              <div className="flex items-center w-full pl-16 ">
+                {course.teacher && (
+                  <img
+                    src={course.teacher.profileImage}
+                    alt="teacher"
+                    className="h-10 w-10 mr-3 object-cover rounded-full"
+                  />
+                )}
+                <p className="font-medium text-left">
+                  {course.teacher?.firstName} {course.teacher?.lastName}
+                </p>
               </div>
             </div>
-          ) : null}
+            {students.length > 0 ? (
+              <div className="flex flex-col items-center m-4 w-full">
+                <h1 className="title !text-[20px]">Students</h1>
+                <div className="flex flex-col gap-2 w-full max-h-36 overflow-auto">
+                  {students.map((student) => (
+                    <div className="flex items-center w-full pl-16">
+                      <img
+                        src={student.profileImage}
+                        alt="student"
+                        className="h-10 w-10 mr-3 object-cover rounded-full"
+                      />
+
+                      <p className="font-medium text-left">
+                        {student?.firstName} {student?.lastName}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
       <DeletePopup

@@ -20,7 +20,7 @@ const CourseCard = ({ title, description, id }) => {
       />
       <div className="details overflow-auto">
         <h2>{title}</h2>
-        <p>{description}</p>
+        <p className="overflow-auto">{description}</p>
       </div>
 
       <Button onClick={handleClick}>View More</Button>

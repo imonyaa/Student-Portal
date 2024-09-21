@@ -55,7 +55,6 @@ const LectureForm = ({ handleCancel, courseId }) => {
           progress: 0,
           theme: "light",
         });
-        window.location.reload();
       }
     } catch (error) {
       console.log(error);

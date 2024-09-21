@@ -29,8 +29,7 @@ const EditProfileForm = (props) => {
       .min(8, "Your password must be at least 8 characters"),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref("newPassword"), null], "Your passwords do not match")
-      .required("You must confirm your password"),
+      .oneOf([yup.ref("newPassword"), null], "Your passwords do not match"),
   });
 
   const {
@@ -194,8 +193,8 @@ const EditProfileForm = (props) => {
               placeholder="Current Password"
               {...register("currentPassword")}
             />
-            {errors.oldPassword && (
-              <ErrorMessage error={errors.oldPassword.message} />
+            {errors.currentPassword && (
+              <ErrorMessage error={errors.currentPassword.message} />
             )}
           </div>
         </div>
