@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Student-portal/static/css/main.1e629e45.css",
+    "main.css": "/Student-portal/static/css/main.7e4fc9ce.css",
     "main.js": "/Student-portal/static/js/main.c1632c7d.js",
     "reactPlayerYouTube.js": "/Student-portal/static/js/reactPlayerYouTube.00135a96.chunk.js",
     "reactPlayerSoundCloud.js": "/Student-portal/static/js/reactPlayerSoundCloud.a12e8e60.chunk.js",
@@ -25,7 +25,7 @@
     "static/media/pdf.png": "/Student-portal/static/media/pdf.61ea59f68b73969f5f1e.png",
     "static/media/logo.svg": "/Student-portal/static/media/logo.39d3078e8db96deffec9740ef1d4ede1.svg",
     "index.html": "/Student-portal/index.html",
-    "main.1e629e45.css.map": "/Student-portal/static/css/main.1e629e45.css.map",
+    "main.7e4fc9ce.css.map": "/Student-portal/static/css/main.7e4fc9ce.css.map",
     "main.c1632c7d.js.map": "/Student-portal/static/js/main.c1632c7d.js.map",
     "reactPlayerYouTube.00135a96.chunk.js.map": "/Student-portal/static/js/reactPlayerYouTube.00135a96.chunk.js.map",
     "reactPlayerSoundCloud.a12e8e60.chunk.js.map": "/Student-portal/static/js/reactPlayerSoundCloud.a12e8e60.chunk.js.map",
@@ -44,7 +44,7 @@
     "453.9e1e7267.chunk.js.map": "/Student-portal/static/js/453.9e1e7267.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1e629e45.css",
+    "static/css/main.7e4fc9ce.css",
     "static/js/main.c1632c7d.js"
   ]
 }
