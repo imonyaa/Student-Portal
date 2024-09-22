@@ -3,12 +3,12 @@
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-  aspect-ratio: 1;
   width: 100%;
   padding: 0.5rem;
   padding-bottom: 1rem;
   border-radius: 2rem;
   border: 1px solid #c2a6d3;
+  height: 24rem;
 }
 
 .course-image {
@@ -16,7 +16,6 @@
   height: 13rem;
   object-fit: cover;
   border-radius: 2rem !important;
-  border-top-right-radius: 2rem !important;
 }
 
 .details {
@@ -26,6 +25,7 @@
   justify-content: start;
   width: 100%;
   padding: 1rem;
+  height: 100%;
 }
 
 .details h2 {
@@ -40,23 +40,4 @@
   font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   width: 97%;
-}
-
-.view-more {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-inline: 1rem;
-  padding-block: 0.5rem;
-  align-self: center;
-  font-size: 1rem;
-  border-radius: 2rem;
-  background-color: #dedffe;
-  font-family: "Outfit", sans-serif;
-  cursor: pointer;
-}
-
-.view-more:hover {
-  background-color: #b9a6d3;
-  color: white;
 }

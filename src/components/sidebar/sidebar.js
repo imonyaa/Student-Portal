@@ -18,7 +18,7 @@ const Sidebar = ({ openNav, setOpenNav }) => {
       path: "/assignments",
     },
     {
-      label: "Calender",
+      label: "Calendar",
       icon: "solar:calendar-broken",
       path: "/calender",
     },
@@ -26,11 +26,6 @@ const Sidebar = ({ openNav, setOpenNav }) => {
       label: "Grades",
       icon: "mynaui:list-check",
       path: "/grades",
-    },
-    {
-      label: "Settings",
-      icon: "solar:settings-linear",
-      path: "/settings",
     },
   ];
 

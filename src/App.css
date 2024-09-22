@@ -16,6 +16,14 @@ h2 {
 
 button {
   all: unset;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 button:focus {
@@ -25,7 +33,7 @@ button:focus {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 1rem);
   padding-top: 4rem;
   overflow-x: hidden !important;
 }
@@ -46,4 +54,54 @@ button:focus {
   to {
     transform: rotate(360deg);
   }
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* Adjust width as needed */
+}
+
+.custom-select select {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+}
+
+.custom-select .chevron-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #512e67;
+}
+
+/* Hide the chevron icon when the select is disabled */
+.custom-select select:disabled + .chevron-icon {
+  display: none;
+}
+
+.custom-select select:focus {
+  outline: none;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #eac6ff;
+  border-radius: 10px;
+  border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f9f9fe;
+  border-radius: 10px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #bb8fd8 #f9f9fe;
 }

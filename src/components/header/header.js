@@ -1,42 +1,105 @@
 import React from "react";
+import logo from "../../public/images/logo.svg";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import "./header.css";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useSelector } from "react-redux";
+import { setUser } from "../../state/user/userSlice";
 
-const Header = ({ openNav, setOpenNav }) => {
-  const handleClick = () => {
+const Header = ({ openNav, setOpenNav, isLoggedIn, setIsLoggedIn }) => {
+  const navigate = useNavigate();
+
+  const [showDropdown, setShowDropdown] = React.useState(false);
+  const handleBorgarClick = () => {
     setOpenNav(!openNav);
   };
+
+  const handleLogout = () => {
+    Cookies.remove("accessToken");
+    setUser({});
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
+  const { firstName, lastName, profileImage } = useSelector(
+    (state) => state.userReducer.user
+  );
+  const fullName = `${firstName} ${lastName}`;
 
   return (
     <header className="header">
       <div className="header-container">
         <div className="left-container">
-          <button onClick={handleClick} className="nav-button">
+          <button
+            onClick={handleBorgarClick}
+            className={isLoggedIn ? "nav-button" : "invisible "}
+          >
             {openNav ? (
               <Icon
-                fontSize={"2.5rem"}
+                fontSize={"2rem"}
                 icon="mingcute:close-line"
                 style={{ color: "#512E67" }}
               />
             ) : (
               <Icon
-                fontSize={"2.5rem"}
+                fontSize={"2rem"}
                 icon="charm:menu-hamburger"
                 style={{ color: "#512E67" }}
               />
             )}
           </button>
-          <h1 className="title">Student Portal</h1>
+          <button
+            className="logo-button"
+            onClick={() => {
+              isLoggedIn ? navigate("/dashboard") : navigate("/login");
+            }}
+          >
+            <img src={logo} class="h-12" />
+          </button>
         </div>
-        <div className="right-container">
-          <h2 className="username">Imane Otmanine</h2>
-          <img
-            className="user-image"
-            src={"https://randomuser.me/api/portraits/women/49.jpg"}
-            alt=""
-          />
-        </div>
+        {isLoggedIn && (
+          <div>
+            <button
+              className="right-container relative"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              <h2 className="username">{fullName}</h2>
+              <img
+                className=" h-12 w-12 rounded-full object-cover cursor-pointer"
+                src={profileImage}
+                alt=""
+              />
+            </button>
+
+            {showDropdown && (
+              <div className="dropdown flex flex-col justify-evenly  absolute top-[60px] right-4 bg-softPurple w-32 h-20 rounded-2xl border-[1px] border-palePurple divide-y-[1px] divide-lilac">
+                <div className="">
+                  <button
+                    className="dropdown-item "
+                    onClick={() => {
+                      navigate("/profile");
+                      setShowDropdown(false);
+                    }}
+                  >
+                    View profile
+                  </button>
+                </div>
+                <div className="pt-1">
+                  <button
+                    className="dropdown-item "
+                    onClick={() => {
+                      handleLogout();
+                      setShowDropdown(false);
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );
