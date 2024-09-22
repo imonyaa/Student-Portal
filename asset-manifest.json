@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Student-Portal/static/css/main.7e4fc9ce.css",
-    "main.js": "/Student-Portal/static/js/main.020ad96f.js",
+    "main.js": "/Student-Portal/static/js/main.3e3d9d06.js",
     "reactPlayerYouTube.js": "/Student-Portal/static/js/reactPlayerYouTube.00135a96.chunk.js",
     "reactPlayerSoundCloud.js": "/Student-Portal/static/js/reactPlayerSoundCloud.a12e8e60.chunk.js",
     "reactPlayerVimeo.js": "/Student-Portal/static/js/reactPlayerVimeo.2df32365.chunk.js",
@@ -26,7 +26,7 @@
     "static/media/logo.svg": "/Student-Portal/static/media/logo.39d3078e8db96deffec9740ef1d4ede1.svg",
     "index.html": "/Student-Portal/index.html",
     "main.7e4fc9ce.css.map": "/Student-Portal/static/css/main.7e4fc9ce.css.map",
-    "main.020ad96f.js.map": "/Student-Portal/static/js/main.020ad96f.js.map",
+    "main.3e3d9d06.js.map": "/Student-Portal/static/js/main.3e3d9d06.js.map",
     "reactPlayerYouTube.00135a96.chunk.js.map": "/Student-Portal/static/js/reactPlayerYouTube.00135a96.chunk.js.map",
     "reactPlayerSoundCloud.a12e8e60.chunk.js.map": "/Student-Portal/static/js/reactPlayerSoundCloud.a12e8e60.chunk.js.map",
     "reactPlayerVimeo.2df32365.chunk.js.map": "/Student-Portal/static/js/reactPlayerVimeo.2df32365.chunk.js.map",
@@ -45,6 +45,6 @@
   },
   "entrypoints": [
     "static/css/main.7e4fc9ce.css",
-    "static/js/main.020ad96f.js"
+    "static/js/main.3e3d9d06.js"
   ]
 }
