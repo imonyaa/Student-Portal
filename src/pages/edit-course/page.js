@@ -36,17 +36,17 @@ const EditCourse = (props) => {
 
     fetchCourseDetail(
       accessToken,
-      "http://localhost:3500/api/courses/" + id,
+      "https://student-portal-backend-0kg8.onrender.com/api/courses/" + id,
       setCourse
     );
     // fetchCourseDetail(
     //   accessToken,
-    //   "http://localhost:3500/api/courses/" + id + "/students",
+    //   "https://student-portal-backend-0kg8.onrender.com/api/courses/" + id + "/students",
     //   setStudents
     // );
     fetchCourseDetail(
       accessToken,
-      "http://localhost:3500/api/announcements/courses/" +
+      "https://student-portal-backend-0kg8.onrender.com/api/announcements/courses/" +
         id +
         "/announcements",
       setAnnouncements

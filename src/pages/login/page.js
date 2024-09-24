@@ -48,7 +48,7 @@ function Login({ title, isLoggedIn, setIsLoggedIn }) {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3500/api/auth/login",
+        "https://student-portal-backend-0kg8.onrender.com/api/auth/login",
         data,
         {
           headers: { "Content-Type": "application/json" },

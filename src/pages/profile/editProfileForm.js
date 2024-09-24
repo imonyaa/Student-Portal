@@ -62,7 +62,7 @@ const EditProfileForm = (props) => {
         formData.append("file", data.image[0]);
       }
       const response = await axios.put(
-        "http://localhost:3500/api/users/me",
+        "https://student-portal-backend-0kg8.onrender.com/api/users/me",
         formData,
 
         {

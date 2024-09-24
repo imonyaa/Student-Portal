@@ -9,11 +9,14 @@ const ProtectedRoutes = () => {
   const fetchUser = async (token) => {
     if (token) {
       try {
-        const response = await axios.get("http://localhost:3500/api/users/me", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://student-portal-backend-0kg8.onrender.com/api/users/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         dispatch(setUser(response?.data));
       } catch (error) {
         console.log(error);

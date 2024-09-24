@@ -40,19 +40,21 @@ const CourseDetails = (props) => {
 
     fetchCourseDetail(
       accessToken,
-      "http://localhost:3500/api/announcements/courses/" +
+      "https://student-portal-backend-0kg8.onrender.com/api/announcements/courses/" +
         id +
         "/announcements",
       setAnnouncements
     );
     fetchCourseDetail(
       accessToken,
-      "http://localhost:3500/api/courses/" + id,
+      "https://student-portal-backend-0kg8.onrender.com/api/courses/" + id,
       setCourse
     );
     fetchCourseDetail(
       accessToken,
-      "http://localhost:3500/api/courses/" + id + "/students",
+      "https://student-portal-backend-0kg8.onrender.com/api/courses/" +
+        id +
+        "/students",
       setStudents
     );
   }, []);
@@ -69,7 +71,7 @@ const CourseDetails = (props) => {
     try {
       if (accessToken && courseId) {
         const response = await axios.delete(
-          `http://localhost:3500/api/courses/${courseId}`,
+          `https://student-portal-backend-0kg8.onrender.com/api/courses/${courseId}`,
           {
             headers: { Authorization: `Bearer ${accessToken}` },
           }

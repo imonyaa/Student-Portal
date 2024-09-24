@@ -10,7 +10,7 @@ import store from "./state/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Student-Portal">
       <Provider store={store}>
         <App />
       </Provider>

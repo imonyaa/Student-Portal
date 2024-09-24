@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import video from "../../../public/images/video.png";
-import videoComplete from "../../../public/images/video-complete.png";
-import pdf from "../../../public/images/pdf.png";
-import pdfComplete from "../../../public/images/pdf-complete.png";
-import Checkbox from "../../utils/checkbox";
-import "./lecture-card.css";
+import video from "../../public/images/video.png";
+import videoComplete from "../../public/images/video-complete.png";
+import pdf from "../../public/images/pdf.png";
+import pdfComplete from "../../public/images/pdf-complete.png";
+import Checkbox from "../../components/utils/checkbox";
+import "../../components/cards/lecture-cards/lecture-card.css";
 import { useSelector } from "react-redux";
-import axios from "../../../api/axios";
-import DeletePopup from "../../utils/deletePopup";
+import axios from "../../api/axios";
+import DeletePopup from "../../components/utils/deletePopup";
 import Cookies from "js-cookie";
-import Button from "../../utils/button";
+import Button from "../../components/utils/button";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
@@ -60,10 +60,8 @@ export const LectureCard = ({
   }
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.userReducer);
-  const myStatus = completionStatus?.filter(
-    (status) => studentId == status.student
-  );
-  const myCompleted = myStatus[0]?.completed || false;
+
+  const myCompleted = false;
   const imageSource = () => {
     if (isAnnouncement) {
       return teacher.profileImage;
@@ -132,11 +130,7 @@ export const LectureCard = ({
   };
 
   const handleClick = () => {
-    if (isAnnouncement || !cardClickable) {
-      return;
-    } else {
-      navigate(`/courses/${id}/${fileId}`);
-    }
+    navigate(`/courses/${id}/${fileId}`);
   };
 
   return (
@@ -176,18 +170,8 @@ export const LectureCard = ({
           </p>
         </div>
       </div>
-      {user.role == "student" && !isAnnouncement && (
-        <div className="flex items-center m-5">
-          <Checkbox
-            disabled
-            checked={myCompleted}
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          />
-        </div>
-      )}
-      {isDeletable && (
+
+      {isAnnouncement && (
         <Button
           type="button"
           className="!bg-[#fa6363] text-white hover:!bg-red-500 focus:!outline-red-600 ml-10"

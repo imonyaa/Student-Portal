@@ -4,7 +4,7 @@ const fetchCourse = async (accessToken, setter, id) => {
   try {
     if (accessToken) {
       const response = await axios.get(
-        "http://localhost:3500/api/courses/" + id,
+        "https://student-portal-backend-0kg8.onrender.com/api/courses/" + id,
         {
           headers: { Authorization: `Bearer ${accessToken}` },
         }
@@ -22,7 +22,7 @@ const fetchFileContent = async (accessToken, fileId, setter, id) => {
   try {
     if (accessToken) {
       const response = await axios.get(
-        "http://localhost:3500/api/courses/" +
+        "https://student-portal-backend-0kg8.onrender.com/api/courses/" +
           id +
           "/files/" +
           fileId +
@@ -51,7 +51,7 @@ const handleMarkCompletion = async (
   try {
     if (accessToken) {
       const response = await axios.put(
-        "http://localhost:3500/api/courses/" +
+        "https://student-portal-backend-0kg8.onrender.com/api/courses/" +
           id +
           "/files/" +
           fileId +

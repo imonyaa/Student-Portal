@@ -57,7 +57,7 @@ const EditCourseDetails = ({ title, description, id, course }) => {
     console.log(data);
     try {
       const response = await axios.put(
-        `http://localhost:3500/api/courses/${id}`,
+        `https://student-portal-backend-0kg8.onrender.com/api/courses/${id}`,
         data,
         {
           headers: {
