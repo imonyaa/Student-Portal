@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Student-Portal/static/css/main.7e4fc9ce.css",
-    "main.js": "/Student-Portal/static/js/main.3e3d9d06.js",
+    "main.css": "/Student-Portal/static/css/main.4aa24bc9.css",
+    "main.js": "/Student-Portal/static/js/main.2b86356d.js",
     "reactPlayerYouTube.js": "/Student-Portal/static/js/reactPlayerYouTube.00135a96.chunk.js",
     "reactPlayerSoundCloud.js": "/Student-Portal/static/js/reactPlayerSoundCloud.a12e8e60.chunk.js",
     "reactPlayerVimeo.js": "/Student-Portal/static/js/reactPlayerVimeo.2df32365.chunk.js",
@@ -21,12 +21,13 @@
     "static/media/video.png": "/Student-Portal/static/media/video.f46994eea1179b6d695f.png",
     "static/media/books.png": "/Student-Portal/static/media/books.dd5dbb9e7463aff79c3f.png",
     "static/media/pdf-complete.png": "/Student-Portal/static/media/pdf-complete.503dcf33a6a522473d17.png",
+    "static/media/assignment.png.png": "/Student-Portal/static/media/assignment.png.82d2cd46f356f4dd127e.png",
     "static/media/noback.png": "/Student-Portal/static/media/noback.892b9e6ec298f897480b.png",
     "static/media/pdf.png": "/Student-Portal/static/media/pdf.61ea59f68b73969f5f1e.png",
     "static/media/logo.svg": "/Student-Portal/static/media/logo.39d3078e8db96deffec9740ef1d4ede1.svg",
     "index.html": "/Student-Portal/index.html",
-    "main.7e4fc9ce.css.map": "/Student-Portal/static/css/main.7e4fc9ce.css.map",
-    "main.3e3d9d06.js.map": "/Student-Portal/static/js/main.3e3d9d06.js.map",
+    "main.4aa24bc9.css.map": "/Student-Portal/static/css/main.4aa24bc9.css.map",
+    "main.2b86356d.js.map": "/Student-Portal/static/js/main.2b86356d.js.map",
     "reactPlayerYouTube.00135a96.chunk.js.map": "/Student-Portal/static/js/reactPlayerYouTube.00135a96.chunk.js.map",
     "reactPlayerSoundCloud.a12e8e60.chunk.js.map": "/Student-Portal/static/js/reactPlayerSoundCloud.a12e8e60.chunk.js.map",
     "reactPlayerVimeo.2df32365.chunk.js.map": "/Student-Portal/static/js/reactPlayerVimeo.2df32365.chunk.js.map",
@@ -44,7 +45,7 @@
     "453.9e1e7267.chunk.js.map": "/Student-Portal/static/js/453.9e1e7267.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7e4fc9ce.css",
-    "static/js/main.3e3d9d06.js"
+    "static/css/main.4aa24bc9.css",
+    "static/js/main.2b86356d.js"
   ]
 }
