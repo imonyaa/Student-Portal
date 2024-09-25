@@ -249,7 +249,7 @@ const Dashboard = (props) => {
                   description={file?.content}
                   teacher={file?.teacher}
                   studentId={user?.id}
-                  id={file?.course?.id}
+                  id={file?.courses[0]}
                   fileId={file?._id}
                   isAnnouncement={true}
                   created_at={file?.created_at}
