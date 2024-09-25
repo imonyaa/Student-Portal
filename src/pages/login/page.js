@@ -51,8 +51,10 @@ function Login({ title, isLoggedIn, setIsLoggedIn }) {
         "https://student-portal-backend-0kg8.onrender.com/api/auth/login",
         data,
         {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            withCredentials: true,
+          },
         }
       );
       console.log(response?.data);

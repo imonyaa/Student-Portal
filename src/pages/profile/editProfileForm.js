@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorMessage from "../../components/utils/errorMessage";
 import Button from "../../components/utils/button";
 import axios from "../../api/axios";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import { setUser } from "../../state/user/userSlice";
@@ -17,16 +17,23 @@ const EditProfileForm = (props) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .email("You must use a valid e-mail")
+      .email("You must use a valid e-mail, or fill your current")
       .required("You must add an e-mail"),
     currentPassword: yup
       .string()
       .required("You must fill your current password")
       .min(8, "The password must be at least 8 characters"),
-    newPassword: yup
-      .string()
-      .required("You must add a password")
-      .min(8, "Your password must be at least 8 characters"),
+    newPassword: yup.string().test(
+      "min-if-filled", // name of the test
+      "Your password must be at least 8 characters", // error message
+      function (value) {
+        if (value) {
+          // if newPassword is filled, it must be at least 8 characters
+          return value.length >= 8;
+        }
+        return true; // if newPassword is not filled, it's valid
+      }
+    ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("newPassword"), null], "Your passwords do not match"),
@@ -36,6 +43,7 @@ const EditProfileForm = (props) => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
     setError,
   } = useForm({
@@ -72,16 +80,21 @@ const EditProfileForm = (props) => {
           },
         }
       );
-      console.log("response: " + response?.data);
-      //  TODO: display success toast
-      //  TODO: dispatch(setUser(response?.data?.user));
-      //  TODO: props.setIsDisabled(true);
+      console.log(response.data);
+      toast.success("Profile updated successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: 0,
+        theme: "light",
+      });
+      dispatch(setUser({ email: data.email, password: data.newPassword }));
+      props.setIsDisabled(true);
     } catch (error) {
-      console.log("error:" + error);
-      // FIXME: fix errors and what they display and toasters
-      //  TODO: display error toast
-      //  TODO: reset form after error
-      /*if (!error?.response) {
+      if (!error.response) {
         console.log(error);
         toast.error("No Server Response", {
           position: "top-center",
@@ -93,8 +106,8 @@ const EditProfileForm = (props) => {
           progress: 0,
           theme: "light",
         });
-      } else if (error.response?.status === 401) {
-        toast.error("Email or password is incorrect", {
+      } else if (error.response?.status === 400) {
+        toast.error("Wrong password, try again!", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -104,12 +117,12 @@ const EditProfileForm = (props) => {
           progress: 0,
           theme: "light",
         });
-        setError("email", {
+        setError("currentPassword", {
           type: "manual",
-          message: error.response.data.message,
+          message: "Your password is wrong",
         });
       } else {
-        toast.error("Log in failed!", {
+        toast.error("Edit profile failed!", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -119,7 +132,8 @@ const EditProfileForm = (props) => {
           progress: 0,
           theme: "light",
         });
-      }*/
+      }
+      reset();
     }
   };
 
@@ -201,17 +215,17 @@ const EditProfileForm = (props) => {
 
         <div className="flex items-start w-full ">
           <p className=" flex items-center justify-end font-roboto font-semibold text-right w-1/3 text-base h-12 m-1">
-            Passwordㅤ
+            New Passwordㅤ
           </p>
           <div className="flex flex-col gap-1 w-2/3 ">
             <input
               className="font-roboto bg-white align-right rounded-full flex-grow flex items-center justify-right px-6 w-full text-base h-14"
               type="password"
-              placeholder="Password"
+              placeholder="New password"
               {...register("newPassword")}
             />
-            {errors.password && (
-              <ErrorMessage error={errors.password.message} />
+            {errors.newPassword && (
+              <ErrorMessage error={errors.newPassword.message} />
             )}
           </div>
         </div>

@@ -56,6 +56,7 @@ const LectureForm = ({ handleCancel, courseId }) => {
           theme: "light",
         });
       }
+      window.location.reload();
     } catch (error) {
       console.log(error);
       toast.error("An error happened please try again", {

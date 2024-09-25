@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
+import { Toaster } from "sonner";
 import ProfileInfo from "./profileInfo";
 import EditProfileForm from "./editProfileForm";
 
@@ -35,6 +35,18 @@ const Profile = (props) => {
           />
         )}
       </div>
+      <Toaster
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        richColors
+      />
     </section>
   );
 };
