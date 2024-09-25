@@ -30,6 +30,7 @@ export const AnnouncementCard = ({
   currentFile,
   created_at,
 }) => {
+  const navigate = useNavigate();
   function formatTimestamp(timestamp) {
     if (!timestamp) {
       return "";
@@ -58,7 +59,7 @@ export const AnnouncementCard = ({
       return `${day}-${month}-${year} at ${hours}:${minutes}`;
     }
   }
-  const navigate = useNavigate();
+
   const { user } = useSelector((state) => state.userReducer);
 
   const myCompleted = false;
