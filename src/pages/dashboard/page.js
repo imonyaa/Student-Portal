@@ -145,6 +145,7 @@ const Dashboard = (props) => {
           <div className="flex gap-4">
             {sortedLectures?.slice(0, 3).map((file) => (
               <LectureCard
+                className="w-1/3"
                 cardClickable={file?.title?.length > 0 ? false : true}
                 fileName={file?.lectureName}
                 fileType={file?.fileType}
