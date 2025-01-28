@@ -78,12 +78,9 @@ const Dashboard = (props) => {
   const fetchCourses = async (accessToken) => {
     try {
       if (accessToken) {
-        const response = await axios.get(
-          "https://student-portal-backend-0kg8.onrender.com/api/courses",
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          }
-        );
+        const response = await axios.get("/api/courses", {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
         setCourses(response.data);
       }
     } catch (error) {
@@ -96,9 +93,7 @@ const Dashboard = (props) => {
     try {
       if (accessToken) {
         const response = await axios.get(
-          "https://student-portal-backend-0kg8.onrender.com/api/announcements/courses/" +
-            id +
-            "/announcements",
+          "/api/announcements/courses/" + id + "/announcements",
           {
             headers: { Authorization: `Bearer ${accessToken}` },
           }

@@ -37,7 +37,7 @@ const LectureForm = ({ handleCancel, courseId }) => {
 
     try {
       const response = await axios.post(
-        `https://student-portal-backend-0kg8.onrender.com/api/courses/${courseId}/upload`,
+        `/api/courses/${courseId}/upload`,
         formData,
         {
           headers: { Authorization: `Bearer ${accessToken}` },

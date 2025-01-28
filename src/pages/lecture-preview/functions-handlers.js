@@ -3,12 +3,9 @@ import axios from "../../api/axios";
 const fetchCourse = async (accessToken, setter, id) => {
   try {
     if (accessToken) {
-      const response = await axios.get(
-        "https://student-portal-backend-0kg8.onrender.com/api/courses/" + id,
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
-      );
+      const response = await axios.get("/api/courses/" + id, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       setter(response.data);
       console.log("course fetch", response.data);
     }
@@ -22,11 +19,7 @@ const fetchFileContent = async (accessToken, fileId, setter, id) => {
   try {
     if (accessToken) {
       const response = await axios.get(
-        "https://student-portal-backend-0kg8.onrender.com/api/courses/" +
-          id +
-          "/files/" +
-          fileId +
-          "/content",
+        "/api/courses/" + id + "/files/" + fileId + "/content",
         {
           headers: { Authorization: `Bearer ${accessToken}` },
           responseType: "arraybuffer",
@@ -51,11 +44,7 @@ const handleMarkCompletion = async (
   try {
     if (accessToken) {
       const response = await axios.put(
-        "https://student-portal-backend-0kg8.onrender.com/api/courses/" +
-          id +
-          "/files/" +
-          fileId +
-          "/mark-completion",
+        "/api/courses/" + id + "/files/" + fileId + "/mark-completion",
         { completed: true },
         {
           headers: { Authorization: `Bearer ${accessToken}` },

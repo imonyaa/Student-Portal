@@ -56,15 +56,11 @@ const EditCourseDetails = ({ title, description, id, course }) => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const response = await axios.put(
-        `https://student-portal-backend-0kg8.onrender.com/api/courses/${id}`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await axios.put(`/api/courses/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       console.log(response.data);
       toast.success("Course details updated successfully", {
         position: "top-center",

@@ -81,15 +81,12 @@ export const AssignmentCard = ({
     try {
       let response = {};
       if (isAnnouncement) {
-        response = await axios.delete(
-          `https://student-portal-backend-0kg8.onrender.com/api/announcements/${fileId}`,
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          }
-        );
+        response = await axios.delete(`/api/announcements/${fileId}`, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
       } else {
         response = await axios.delete(
-          `https://student-portal-backend-0kg8.onrender.com/api/courses/${courseId}/files/${fileId}`,
+          `/api/courses/${courseId}/files/${fileId}`,
           {
             headers: { Authorization: `Bearer ${accessToken}` },
           }

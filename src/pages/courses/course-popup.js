@@ -37,7 +37,7 @@ const CreateCoursePopup = ({ setTrigger, trigger }) => {
     console.log(data);
     try {
       const response = await axios.post(
-        `https://student-portal-backend-0kg8.onrender.com/api/courses`,
+        `/api/courses`,
         { ...data, materials: ["pdf", "video"] },
         {
           headers: {

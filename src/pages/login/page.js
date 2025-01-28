@@ -47,16 +47,12 @@ function Login({ title, isLoggedIn, setIsLoggedIn }) {
   // submit handler ----------------------------------------------------------------------------------------------------------
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "https://student-portal-backend-0kg8.onrender.com/api/auth/login",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            withCredentials: true,
-          },
-        }
-      );
+      const response = await axios.post("/api/auth/login", data, {
+        headers: {
+          "Content-Type": "application/json",
+          withCredentials: true,
+        },
+      });
       console.log(response?.data);
       const accessToken = response?.data?.token;
       if (accessToken !== null) {

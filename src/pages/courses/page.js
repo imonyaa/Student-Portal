@@ -25,12 +25,9 @@ const Courses = (props) => {
       try {
         const accessToken = Cookies.get("accessToken");
         if (accessToken) {
-          const response = await axios.get(
-            "https://student-portal-backend-0kg8.onrender.com/api/courses",
-            {
-              headers: { Authorization: `Bearer ${accessToken}` },
-            }
-          );
+          const response = await axios.get("/api/courses", {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          });
           setCourses(response.data);
         }
       } catch (error) {

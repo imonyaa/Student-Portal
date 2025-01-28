@@ -28,7 +28,7 @@ const AnnouncementForm = ({ handleCancel, courseId }) => {
     const accessToken = Cookies.get("accessToken");
     try {
       const response = await axios.post(
-        `https://student-portal-backend-0kg8.onrender.com/api/announcements`,
+        `/api/announcements`,
         {
           title: "a",
           content: data.description,
