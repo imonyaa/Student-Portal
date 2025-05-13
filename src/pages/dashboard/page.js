@@ -14,7 +14,6 @@ import { AnnouncementCard } from "./announcementCard";
 
 const Dashboard = (props) => {
   //------------------------ states-------------------------------------------------
-  const { role } = useSelector((state) => state.userReducer.user);
   const { user } = useSelector((state) => state.userReducer);
   const [courses, setCourses] = useState([]);
   const [lectures, setLectures] = useState([]);
@@ -31,27 +30,8 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     fetchCourses(accessToken);
-    const allLectures = courses.flatMap((course) =>
-      course.files.map((file) => ({
-        lectureName: file.lectureName,
-        filename: file.filename,
-        fileType: file.fileType,
-        description: file.description,
-        _id: file._id,
-        id: course._id,
-        created_at: file.created_at,
-        completionStatus: file.completionStatus,
-      }))
-    );
-
-    setLectures(allLectures);
-    console.log(`lectures are heeeeeeeeeeeere`, lectures);
-    courses.forEach((element) => {
-      fetchAnnouncements(element._id, accessToken);
-      console.log(`announcements are heeeeeeeeeeeere`, announcements);
-    });
   }, []);
-  // Extract lectures from each course and flatten the array
+
   useEffect(() => {
     const allLectures = courses.flatMap((course) =>
       course.files.map((file) => ({
@@ -65,12 +45,11 @@ const Dashboard = (props) => {
         completionStatus: file.completionStatus,
       }))
     );
+    setLectures(allLectures);
+
     courses.forEach((element) => {
       fetchAnnouncements(element._id, accessToken);
-      console.log(`announcements are heeeeeeeeeeeere`, announcements);
     });
-    setLectures(allLectures);
-    console.log(`lectures are heeeeeeeeeeeere`, lectures);
   }, [courses]);
 
   //------------------------- fetches-----------------------------------------
@@ -98,7 +77,13 @@ const Dashboard = (props) => {
             headers: { Authorization: `Bearer ${accessToken}` },
           }
         );
-        setAnnouncements(...announcements, response.data);
+        setAnnouncements((prev) => {
+          const newData = [...prev, ...response.data];
+          const uniqueData = Array.from(
+            new Map(newData.map((item) => [item._id, item])).values()
+          );
+          return uniqueData;
+        });
         console.log(response.data);
       }
     } catch (error) {
